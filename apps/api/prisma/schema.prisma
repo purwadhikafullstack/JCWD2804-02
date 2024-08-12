@@ -10,12 +10,38 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Sample {
+model User {
+  id        Int      @id @default(autoincrement())
+  email     String   @unique
+  password  String
+  orders    Order[]
+}
+
+model Store {
   id        Int      @id @default(autoincrement())
   name      String
-  code      String   @unique
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  location  String
+  products  Product[]
+  orders    Order[]
+}
 
-  @@map("samples") // if you want to use snake_case format
+model Product {
+  id        Int      @id @default(autoincrement())
+  name      String
+  price     Float
+  storeId   Int
+  store     Store    @relation(fields: [storeId], references: [id])
+  orders    Order[]
+}
+
+model Order {
+  id        Int      @id @default(autoincrement())
+  userId    Int
+  user      User     @relation(fields: [userId], references: [id])
+  storeId   Int
+  store     Store    @relation(fields: [storeId], references: [id])
+  productId Int
+  product   Product  @relation(fields: [productId], references: [id])
+  status    String
+  createdAt DateTime @default(now())
 }
