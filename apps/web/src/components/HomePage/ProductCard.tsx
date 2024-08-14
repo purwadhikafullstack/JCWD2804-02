@@ -19,10 +19,10 @@ const ProductCard: React.FC<ProductCardProps> = ({
     <div className="max-w-xs bg-white shadow-lg rounded-lg overflow-hidden">
       <img className="w-full h-48 object-cover" src={imageUrl} alt={name} />
       <div className="p-4">
-        <h3 className="text-gray-800 font-semibold text-lg">{name}</h3>
+        <h3 className="text-gray-600 font-semibold text-lg">{name}</h3>
         <p className="text-gray-600 text-sm">{unit}</p>
         <div className="mt-2">
-          <span className="text-gray-800 font-bold text-xl">Rp {price}</span>
+          <span className="text-gray-600 font-bold text-xl">Rp {price}</span>
         </div>
         <button
           onClick={onAddToCart}

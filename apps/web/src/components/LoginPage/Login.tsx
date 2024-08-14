@@ -2,6 +2,7 @@
 import axios from 'axios';
 import { useState } from 'react';
 import Swal from 'sweetalert2';
+import { FcGoogle } from 'react-icons/fc';
 
 const LoginPage = () => {
   const [email, setEmail] = useState('');
@@ -28,7 +29,7 @@ const LoginPage = () => {
   };
 
   return (
-    <div className="flex gap-1 justify-center items-center py-14">
+    <div className="flex gap-1 justify-center items-center py-5">
       <div className="flex justify-center">
         <img
           src="https://img.freepik.com/free-vector/mobile-login-concept-illustration_114360-83.jpg?t=st=1721103873~exp=1721107473~hmac=60fc637d34ea02bb6430031c4438d8525abd928356f958998a55bc43ed4b698a&w=740"
@@ -79,6 +80,22 @@ const LoginPage = () => {
           >
             LOG IN
           </button>
+          <div className="flex items-center justify-between my-4">
+            <span className="w-1/5 border-b border-gray-300 lg:w-1/4"></span>
+            <span className="text-xs text-center text-white">ATAU</span>
+            <span className="w-1/5 border-b border-gray-300 lg:w-1/4"></span>
+          </div>
+          <div className="flex justify-between">
+            <button
+              type="button"
+              className="w-full px-3 flex py-2 ml-2 text-white bg-white rounded hover:bg-slate-200 focus:outline-none"
+            >
+              <FcGoogle className="text-2xl ml-12" />
+              <span className="text-md font-medium ml-3 text-black">
+                Google
+              </span>
+            </button>
+          </div>
           <div className="flex flex-col mt-4">
             <p className="text-white text-center py-2">
               Baru di Pasar Kita?{' '}
