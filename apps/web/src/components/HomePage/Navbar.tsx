@@ -148,18 +148,19 @@ const Navbar: React.FC = () => {
         </div>
 
         <ul className="flex space-x-6 ml-4">
-          <li className="hover:underline text-orange-600 cursor-pointer">
+          <a className="hover:underline text-orange-600 cursor-pointer">
             Dashboard
-          </li>
-          <li className="hover:underline text-orange-600 cursor-pointer">
-            Team
-          </li>
-          <li className="hover:underline text-orange-600 cursor-pointer">
+          </a>
+          <a className="hover:underline text-orange-600 cursor-pointer">Team</a>
+          <a
+            href="/login"
+            className="hover:underline text-orange-600 cursor-pointer"
+          >
             Login
-          </li>
-          <li className="hover:underline text-orange-600 cursor-pointer">
+          </a>
+          <a className="hover:underline text-orange-600 cursor-pointer">
             Register
-          </li>
+          </a>
         </ul>
       </div>
       <div className="flex items-center space-x-4">
