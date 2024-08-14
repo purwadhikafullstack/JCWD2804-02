@@ -8,7 +8,7 @@ const logoRegister = () => {
   };
 
   return (
-    <div className="flex w-1/4 h-full justify-center pt-10">
+    <div className="flex w-1/4 h-full justify-center pt-5">
       <img
         onClick={handleClick}
         src="/images/logo.png"

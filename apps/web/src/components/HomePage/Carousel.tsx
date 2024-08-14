@@ -22,12 +22,7 @@ const Carousel: React.FC<CarouselProps> = ({ images }) => {
 
   return (
     <div className="relative w-[90%] justify-center" data-carousel="slide">
-      <div className="space-y-5 sm:space-y-7 mb-3 pl-2 text-primary text-left sm:text-left lg:text-left">
-        <h1 className="text-4xl text-orange-600 sm:text-2xl lg:text-3xl font-bold">
-          Lorem Ipsum
-        </h1>
-      </div>
-      <div className="relative h-56 overflow-hidden rounded-lg md:h-96 lg:h-64">
+      <div className="relative h-56 overflow-hidden rounded-lg md:h-96 lg:h-96">
         {images.map((image, index) => (
           <div
             key={index}
@@ -37,7 +32,7 @@ const Carousel: React.FC<CarouselProps> = ({ images }) => {
           >
             <img
               src={image}
-              className="object-cover w-full h-full"
+              className="object-fit w-full h-full"
               alt={`Slide ${index + 1}`}
             />
           </div>

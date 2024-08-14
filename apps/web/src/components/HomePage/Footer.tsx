@@ -3,9 +3,9 @@ import { FaTwitter, FaYoutube, FaInstagram } from 'react-icons/fa6';
 
 const Footer: React.FC = () => {
   return (
-    <footer className="bg-orange-600 text-center text-white py-8">
+    <footer className="bg-white text-center text-black py-8">
       <div className="mb-4 flex items-center justify-center">
-        <img src="/images/logo.png" alt="" />
+        <img src="/images/logo-1.png" alt="" />
       </div>
       <div className="mb-4">
         <h2 className="font-bold text-lg">Pasar Kita</h2>
