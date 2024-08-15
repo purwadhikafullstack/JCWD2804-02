@@ -1,13 +1,16 @@
 'use client';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Carousel from '@/components/HomePage/Carousel';
 import Footer from '@/components/HomePage/Footer';
 import Navbar from '@/components/HomePage/Navbar';
 import ProductCard from '@/components/HomePage/ProductCard';
 import CategoryCard from '@/components/HomePage/CategoryCard';
 import BenefitCard from '@/components/HomePage/BenefitCard';
+import { requestLocation, Coordinates } from '@/utils/locationPermission';
 
 const page = () => {
+  const [longlat, setLonglat] = useState<Coordinates>();
+
   const images = [
     '/images/1.jpg',
     '/images/2.jpg',
@@ -21,6 +24,24 @@ const page = () => {
   const handleAddToCart = () => {
     alert('Product added to cart!');
   };
+
+  const requestPermissions = async () => {
+    try {
+      const location = await requestLocation();
+      if (location) {
+        alert('Permission allowed');
+      } else {
+        alert('Permission denied');
+      }
+      setLonglat(location);
+    } catch (error) {
+      console.error('error : ', error);
+    }
+  };
+
+  useEffect(() => {
+    requestPermissions();
+  }, []);
 
   return (
     <div className="overflow-x-hidden h-screen bg-white">
