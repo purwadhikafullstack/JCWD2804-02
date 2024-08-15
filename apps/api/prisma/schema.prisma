@@ -19,16 +19,19 @@ model SuperAdmin {
 }
 
 model Store {
-  id           Int          @id @default(autoincrement())
-  store_name   String       @db.VarChar(50)
-  description  String       @db.VarChar(100)
-  location     String       @db.VarChar(45)
-  SuperAdmin   SuperAdmin   @relation(fields: [superAdminId], references: [id])
+  id          Int          @id @default(autoincrement())
+  store_name  String       @db.VarChar(50)
+  description String       @db.VarChar(100)
+  location    String       @db.VarChar(45)
+  latitude    Float
+  longitude   Float
+  isMainStore Boolean   @default(false)
+  SuperAdmin  SuperAdmin   @relation(fields: [superAdminId], references: [id])
   superAdminId Int
-  Products     Products[]
-  Order        Order[]
-  Payment      Payment[]
-  StoreAdmin   StoreAdmin[]
+  Products    Products[]
+  Order       Order[]
+  Payment     Payment[]
+  StoreAdmin StoreAdmin[]
 }
 
 model StoreAdmin {
