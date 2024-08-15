@@ -4,7 +4,7 @@ import React from 'react';
 const logoLogin = () => {
   const router = useRouter();
   const handleClick = () => {
-    router.push('/home');
+    router.push('/');
   };
 
   return (

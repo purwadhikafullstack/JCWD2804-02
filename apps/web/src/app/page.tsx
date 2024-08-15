@@ -141,7 +141,7 @@ const page = () => {
         </h2>
         <div className="flex space-x-16 justify-center overflow-x-auto">
           <BenefitCard
-            imageUrl="/images/food.jpg"
+            imageUrl="/images/gratis.jpg"
             title="Makanan"
             description="Lorem Ipsum"
           />

@@ -4,7 +4,7 @@ import React from 'react';
 const logoRegister = () => {
   const router = useRouter();
   const handleClick = () => {
-    router.push('/home');
+    router.push('/');
   };
 
   return (
