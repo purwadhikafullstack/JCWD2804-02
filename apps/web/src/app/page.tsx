@@ -1,95 +1,172 @@
-import Image from 'next/image'
-import styles from './page.module.css'
+'use client';
+import React, { useEffect, useState } from 'react';
+import Carousel from '@/components/HomePage/Carousel';
+import Footer from '@/components/HomePage/Footer';
+import Navbar from '@/components/HomePage/Navbar';
+import ProductCard from '@/components/HomePage/ProductCard';
+import CategoryCard from '@/components/HomePage/CategoryCard';
+import BenefitCard from '@/components/HomePage/BenefitCard';
+import { requestLocation, Coordinates } from '@/utils/locationPermission';
 
-export default function Home() {
+const page = () => {
+  const [longlat, setLonglat] = useState<Coordinates>();
+
+  const images = [
+    '/images/1.jpg',
+    '/images/2.jpg',
+    '/images/3.jpg',
+    '/images/4.jpg',
+    '/images/5.jpg',
+    '/images/6.jpg',
+    '/images/7.jpg',
+  ];
+
+  const handleAddToCart = () => {
+    alert('Product added to cart!');
+  };
+
+  const requestPermissions = async () => {
+    try {
+      const location = await requestLocation();
+      if (location) {
+        alert('Permission allowed');
+      } else {
+        alert('Permission denied');
+      }
+      setLonglat(location);
+    } catch (error) {
+      console.error('error : ', error);
+    }
+  };
+
+  useEffect(() => {
+    requestPermissions();
+  }, []);
+
   return (
-    <main className={styles.main}>
-      <div className={styles.description}>
-        <p>
-          Get started by editing&nbsp;
-          <code className={styles.code}>src/app/page.tsx</code>
-        </p>
-        <div>
-          <a
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{' '}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className={styles.vercelLogo}
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
+    <div className="overflow-x-hidden h-screen bg-white">
+      <div className="z-10">
+        <Navbar />
+      </div>
+      <div className="justify-center flex mt-7">
+        <Carousel images={images} />
+      </div>
+      <div className="p-8 bg-white">
+        <h2 className="text-2xl ml-8 font-semibold text-gray-700">
+          Produk Rekomendasi
+        </h2>
+        <div className="p-8 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+          <ProductCard
+            imageUrl="https://via.placeholder.com/300"
+            name="Fresh Apples"
+            price="20.000"
+            unit="1kg"
+            onAddToCart={handleAddToCart}
+          />
+          <ProductCard
+            imageUrl="https://via.placeholder.com/300"
+            name="Organic Bananas"
+            price="40.000"
+            unit="1kg"
+            onAddToCart={handleAddToCart}
+          />
+          <ProductCard
+            imageUrl="https://via.placeholder.com/300"
+            name="Red Tomatoes"
+            price="20.000"
+            unit="500g"
+            onAddToCart={handleAddToCart}
+          />
+          <ProductCard
+            imageUrl="https://via.placeholder.com/300"
+            name="Red Tomatoes"
+            price="20.000"
+            unit="500g"
+            onAddToCart={handleAddToCart}
+          />
         </div>
       </div>
-
-      <div className={styles.center}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
+      <div className="p-8 bg-gradient-to-r from-primary via-secondary to-third">
+        <h2 className="mb-8 text-2xl text-center font-semibold text-white">
+          Kategori Kebutuhan Produk
+        </h2>
+        <div className="flex space-x-16 justify-center overflow-x-auto">
+          <CategoryCard imageUrl="/images/food.jpg" title="Makanan" />
+          <CategoryCard imageUrl="/images/drink.png" title="Minuman" />
+          <CategoryCard imageUrl="/images/house.jpg" title="Rumah" />
+          <CategoryCard imageUrl="/images/dapur.jpg" title="Dapur" />
+          <CategoryCard imageUrl="/images/mom.jpg" title="Ibu & Anak" />
+          <CategoryCard imageUrl="/images/health.jpg" title="Kesehatan" />
+          <CategoryCard imageUrl="/images/petfood.jpg" title="Pet Food" />
+        </div>
       </div>
-
-      <div className={styles.grid}>
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Docs <span>-&gt;</span>
-          </h2>
-          <p>Find in-depth information about Next.js features and API.</p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Learn <span>-&gt;</span>
-          </h2>
-          <p>Learn about Next.js in an interactive course with&nbsp;quizzes!</p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Templates <span>-&gt;</span>
-          </h2>
-          <p>Explore starter templates for Next.js.</p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Deploy <span>-&gt;</span>
-          </h2>
-          <p>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
+      <div className="p-8 bg-white">
+        <h2 className="text-2xl ml-8 font-semibold text-gray-700">
+          Produk Terbaru
+        </h2>
+        <div className="p-8 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+          <ProductCard
+            imageUrl="https://via.placeholder.com/300"
+            name="Fresh Apples"
+            price="20.000"
+            unit="1kg"
+            onAddToCart={handleAddToCart}
+          />
+          <ProductCard
+            imageUrl="https://via.placeholder.com/300"
+            name="Organic Bananas"
+            price="40.000"
+            unit="1kg"
+            onAddToCart={handleAddToCart}
+          />
+          <ProductCard
+            imageUrl="https://via.placeholder.com/300"
+            name="Red Tomatoes"
+            price="20.000"
+            unit="500g"
+            onAddToCart={handleAddToCart}
+          />
+          <ProductCard
+            imageUrl="https://via.placeholder.com/300"
+            name="Red Tomatoes"
+            price="20.000"
+            unit="500g"
+            onAddToCart={handleAddToCart}
+          />
+        </div>
       </div>
-    </main>
-  )
-}
+      <div className="p-8 bg-gradient-to-r from-third via-secondary to-primary">
+        <h2 className="mb-8 text-2xl text-center font-semibold text-white">
+          Yuk berbelanja di PasarKita dan dapatkan Keuntungannya!
+        </h2>
+        <div className="flex space-x-16 justify-center overflow-x-auto">
+          <BenefitCard
+            imageUrl="/images/food.jpg"
+            title="Makanan"
+            description="Lorem Ipsum"
+          />
+          <BenefitCard
+            imageUrl="/images/drink.png"
+            title="Minuman"
+            description="lorem ipsum"
+          />
+          <BenefitCard
+            imageUrl="/images/house.jpg"
+            title="Rumah"
+            description="lorem ipsum"
+          />
+          <BenefitCard
+            imageUrl="/images/dapur.jpg"
+            title="Dapur"
+            description="lorem ipsum"
+          />
+        </div>
+      </div>
+      <div>
+        <Footer />
+      </div>
+    </div>
+  );
+};
+
+export default page;
