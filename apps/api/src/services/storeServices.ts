@@ -7,22 +7,39 @@ export const createStore = async (store: Store) => {
     store_name: store.store_name,
     description: store.description,
     location: store.location,
+    latitude: store.latitude,
+    longitude: store.longitude,
+    isMainStore: store.isMainStore,
     SuperAdmin: {
-      connect: { id: store.superAdminId } // menghubungkan ke SuperAdmin berdasarkan ID
-    },
-    // Properti lain seperti Products, Order, Payment perlu dihubungkan atau diatur sesuai kebutuhan
+      connect: { id: store.superAdminId }  // Menghubungkan ke SuperAdmin berdasarkan ID
+    }
   };
 
   return await prisma.store.create({ data: storeData });
 };
 
 export const getAllStore = async () => {
-  return await prisma.store.findMany();
+  return await prisma.store.findMany({
+    include: {
+      SuperAdmin: true,
+      Products: true,
+      Order: true,
+      Payment: true,
+      StoreAdmin: true
+    }
+  });
 };
 
 export async function getStoreById(id: number) {
-  return prisma.store.findUnique({
-    where: { id }
+  return await prisma.store.findUnique({
+    where: { id },
+    include: {
+      SuperAdmin: true,
+      Products: true,
+      Order: true,
+      Payment: true,
+      StoreAdmin: true
+    }
   });
 }
 
@@ -31,10 +48,12 @@ export const updateStore = async (id: number, store: Store) => {
     store_name: store.store_name,
     description: store.description,
     location: store.location,
+    latitude: store.latitude,
+    longitude: store.longitude,
+    isMainStore: store.isMainStore,
     SuperAdmin: {
-      connect: { id: store.superAdminId } // menghubungkan ke SuperAdmin berdasarkan ID
-    },
-    // Properti lain seperti Products, Order, Payment perlu dihubungkan atau diatur sesuai kebutuhan
+      connect: { id: store.superAdminId }  // Menghubungkan ke SuperAdmin berdasarkan ID
+    }
   };
 
   return await prisma.store.update({ where: { id }, data: storeData });

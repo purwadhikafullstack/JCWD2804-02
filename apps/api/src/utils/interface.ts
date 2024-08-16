@@ -10,6 +10,9 @@ export interface SuperAdmin {
   }
   
   export interface Store {
+    longitude: any;
+    isMainStore: any;
+    latitude: any;
     id: number;
     store_name: string;
     description: string;
