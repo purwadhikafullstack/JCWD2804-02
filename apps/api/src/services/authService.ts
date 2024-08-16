@@ -1,13 +1,13 @@
 import { prisma } from '../prisma.ts';
 
 export interface User {
-  id: number;
   name: string;
   address: string;
-  phone: number;
+  phone: string;
   email: string;
   password: string;
   status: string;
+  Order: any;
 }
 
 export const register = async (auth: User) => {
