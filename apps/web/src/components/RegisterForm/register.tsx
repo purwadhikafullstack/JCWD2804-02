@@ -15,7 +15,6 @@ const RegisterForm = () => {
         email: email,
         password: password,
       });
-
       Swal.fire({
         title: 'Success',
         text: 'Account registered!',

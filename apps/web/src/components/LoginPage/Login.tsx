@@ -15,13 +15,12 @@ const LoginPage = () => {
         email: email,
         password: password,
       });
-
       Swal.fire({
         title: 'Success',
         text: 'Login Success!',
         icon: 'success',
       }).then(() => {
-        window.location.href = '/home';
+        window.location.href = '/';
       });
     } catch (error: any) {
       console.error(error);
