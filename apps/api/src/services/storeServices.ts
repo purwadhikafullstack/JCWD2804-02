@@ -62,3 +62,14 @@ export const updateStore = async (id: number, store: Store) => {
 export const deleteStore = async (id: number) => {
   return await prisma.store.delete({ where: { id } });
 };
+
+export const assignStoreAdminToStore = async (storeAdminId: number, storeId: number) => {
+  return await prisma.storeAdmin.update({
+    where: { id: storeAdminId },
+    data: {
+      Store: {
+        connect: { id: storeId }
+      }
+    }
+  });
+};
