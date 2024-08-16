@@ -92,6 +92,15 @@ model User {
   password String  @db.VarChar(45)
   role     Role?    @default(USER)
   Order    Order[]
+  Addresses Address[]
+}
+
+model Address {
+  id        Int      @id @default(autoincrement())
+  address   String   @db.VarChar(60)
+  isPrimary Boolean  @default(false)
+  userId    Int
+  User      User     @relation(fields: [userId], references: [id])
 }
 
 enum Role {
