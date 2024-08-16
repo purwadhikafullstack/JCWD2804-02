@@ -10,7 +10,7 @@ datasource db {
 model SuperAdmin {
   id         Int          @id @default(autoincrement())
   name       String       @db.VarChar(60)
-  email      String       @db.VarChar(50)
+  email      String       @unique
   phone      Float        @db.Double
   password   String       @db.VarChar(45)
   address    String       @db.VarChar(45)
@@ -37,7 +37,7 @@ model Store {
 model StoreAdmin {
   id           Int        @id @default(autoincrement())
   name         String     @db.VarChar(50)
-  email        String     @db.VarChar(50)
+  email        String     @unique
   phone        Float      @db.Double
   password     String     @db.VarChar(45)
   address      String     @db.VarChar(45)
@@ -91,5 +91,12 @@ model User {
   email    String  @db.VarChar(50)
   password String  @db.VarChar(45)
   status   String  @db.VarChar(45)
+  role     Role    @default(USER)
   Order    Order[]
+}
+
+enum Role {
+  SUPERADMIN
+  STOREADMIN
+  USER
 }
