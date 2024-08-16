@@ -84,15 +84,23 @@ model Payment {
 }
 
 model User {
-  id       Int     @id @default(autoincrement())
-  name     String  @db.VarChar(50)
-  address  String  @db.VarChar(60)
-  phone    Float   @db.Double
-  email    String  @db.VarChar(50)
-  password String  @db.VarChar(45)
-  status   String  @db.VarChar(45)
-  role     Role    @default(USER)
+  id       Int        @id @default(autoincrement())
+  name     String     @db.VarChar(50)
+  phone    Float      @db.Double
+  email    String     @unique @db.VarChar(50)
+  password String     @db.VarChar(45)
+  status   String     @db.VarChar(45)
+  role     Role       @default(USER)
   Order    Order[]
+  Addresses Address[]
+}
+
+model Address {
+  id        Int      @id @default(autoincrement())
+  address   String   @db.VarChar(60)
+  isPrimary Boolean  @default(false)
+  userId    Int
+  User      User     @relation(fields: [userId], references: [id])
 }
 
 enum Role {
