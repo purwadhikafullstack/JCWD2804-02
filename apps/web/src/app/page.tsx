@@ -142,23 +142,18 @@ const page = () => {
         <div className="flex space-x-16 justify-center overflow-x-auto">
           <BenefitCard
             imageUrl="/images/gratis.jpg"
-            title="Makanan"
-            description="Lorem Ipsum"
+            title="Gratis Ongkir"
+            description="Tanpa Minimal Transaksi"
           />
           <BenefitCard
-            imageUrl="/images/drink.png"
-            title="Minuman"
-            description="lorem ipsum"
+            imageUrl="/images/sameday.webp"
+            title="Sameday Delivery"
+            description="Pesanan Diantar Lebih Cepat"
           />
           <BenefitCard
-            imageUrl="/images/house.jpg"
-            title="Rumah"
-            description="lorem ipsum"
-          />
-          <BenefitCard
-            imageUrl="/images/dapur.jpg"
-            title="Dapur"
-            description="lorem ipsum"
+            imageUrl="/images/produk.png"
+            title="Produk Lengkap"
+            description="Lengkap? Ya, PasarKita!"
           />
         </div>
       </div>

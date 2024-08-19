@@ -4,17 +4,19 @@ import { generateToken } from '../utils/jwt.ts';
 
 export const register = async (req: Request, res: Response) => {
   try {
-    const { name, address, phone, email, password, status, Order } = req.body;
+    const { name, address, phone, email, password, Order } = req.body;
     const bodyRequest: authService.User = {
       name: name,
       address: address,
       phone: phone,
       email: email,
       password: password,
-      status: status,
       Order: Order,
     };
-    await authService.register(bodyRequest);
+    const user = await authService.register(bodyRequest);
+    if (!user) {
+      throw new Error('User register failed');
+    }
     res.status(201).send({
       message: 'User registered successfully',
     });
@@ -27,21 +29,21 @@ export const register = async (req: Request, res: Response) => {
 
 export const login = async (req: Request, res: Response) => {
   try {
-    const { name, address, phone, email, password, status, Order } = req.body;
+    const { email, password } = req.body;
     const bodyRequest: authService.User = {
-      name: name,
-      address: address,
-      phone: phone,
       email: email,
       password: password,
-      status: status,
-      Order: Order,
     };
     const user = await authService.login(bodyRequest);
+    if (!user) {
+      throw new Error('User login failed');
+    }
     const token = generateToken(user.id);
     res.status(200).send({
       message: 'User logged in',
       token: token,
+      role: user.role,
+
     });
   } catch (error: any) {
     res.status(400).send({
