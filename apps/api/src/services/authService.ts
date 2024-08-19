@@ -1,4 +1,5 @@
 import { prisma } from '../prisma.ts';
+import bcrypt from 'bcryptjs';
 
 export interface User {
   name?: string;
@@ -10,6 +11,7 @@ export interface User {
 }
 
 export const register = async (auth: User) => {
+  const hashedPassword = await bcrypt.hash(auth.password, 10);
   const user = await prisma.user.findUnique({
     where: { email: auth.email },
   });
@@ -30,5 +32,12 @@ export const login = async (auth: User) => {
     where: { email: auth.email },
   });
   if (!user) throw new Error('User not found');
+
+  const valid = await bcrypt.compare(auth.password, user.password);
+  if (!valid) throw new Error('Invalid password');
   return user;
 };
+
+export function getUsers() {
+  throw new Error('Function not implemented.');
+}

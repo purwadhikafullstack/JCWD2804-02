@@ -1,9 +1,14 @@
 import { Request, Response } from 'express';
 import * as authService from '../services/authService.ts';
 import { generateToken } from '../utils/jwt.ts';
+import { validationResult } from 'express-validator';
 
 export const register = async (req: Request, res: Response) => {
   try {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).json({ errors: errors.array() });
+    }
     const { name, address, phone, email, password, Order } = req.body;
     const bodyRequest: authService.User = {
       name: name,
@@ -43,7 +48,6 @@ export const login = async (req: Request, res: Response) => {
       message: 'User logged in',
       token: token,
       role: user.role,
-
     });
   } catch (error: any) {
     res.status(400).send({

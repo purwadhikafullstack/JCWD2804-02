@@ -1,5 +1,6 @@
 'use client';
 import axios from 'axios';
+import Cookies from 'js-cookie';
 import { useState } from 'react';
 import Swal from 'sweetalert2';
 import { FcGoogle } from 'react-icons/fc';
@@ -7,14 +8,32 @@ import { FcGoogle } from 'react-icons/fc';
 const LoginPage = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
 
   const Login = async (e: { preventDefault: () => void }) => {
     e.preventDefault();
     try {
-      await axios.post('http://localhost:8000/api/auth/login', {
-        email: email,
-        password: password,
+      const response = await axios.post(
+        'http://localhost:8000/api/auth/login',
+        {
+          email: email,
+          password: password,
+        },
+      );
+
+      const { token, role } = response.data;
+
+      Cookies.set('auth-token', token, {
+        secure: true,
+        sameSite: 'Strict',
+        expires: 7 / 24,
       });
+      Cookies.set('role', role, {
+        secure: true,
+        sameSite: 'Strict',
+        expires: 7 / 24,
+      });
+
       Swal.fire({
         title: 'Success',
         text: 'Login Success!',
@@ -25,6 +44,10 @@ const LoginPage = () => {
     } catch (error: any) {
       console.error(error);
     }
+  };
+
+  const togglePassword = () => {
+    setShowPassword(!showPassword);
   };
 
   return (
@@ -50,6 +73,7 @@ const LoginPage = () => {
             </label>
             <input
               type="text"
+              required
               name="email"
               id="email"
               value={email}
@@ -65,13 +89,21 @@ const LoginPage = () => {
               Password
             </label>
             <input
-              type="password"
+              type={showPassword ? 'text' : 'password'}
+              required
               name="password"
               id="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               className="mt-1 bg-white text-black block w-full p-2 border rounded-md shadow-sm"
             />
+            <button
+              type="button"
+              className="bg-transparent inset-y-0 right-0 px-3 py-1 text-white flex items-center hover:underline"
+              onClick={togglePassword}
+            >
+              {showPassword ? 'Hide' : 'Show Password'}
+            </button>
           </div>
           <button
             type="submit"

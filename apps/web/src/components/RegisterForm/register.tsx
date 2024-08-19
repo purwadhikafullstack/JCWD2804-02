@@ -7,6 +7,7 @@ import { FcGoogle } from 'react-icons/fc';
 const RegisterForm = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
 
   const Register = async (e: { preventDefault: () => void }) => {
     e.preventDefault();
@@ -25,6 +26,10 @@ const RegisterForm = () => {
     } catch (error: any) {
       console.error(error);
     }
+  };
+
+  const togglePassword = () => {
+    setShowPassword(!showPassword);
   };
 
   return (
@@ -65,13 +70,20 @@ const RegisterForm = () => {
               Password
             </label>
             <input
-              type="password"
+              type={showPassword ? 'text' : 'password'}
               name="password"
               id="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               className="mt-1 bg-white text-black block w-full p-2 border rounded-md shadow-sm"
             />
+            <button
+              type="button"
+              className="bg-transparent inset-y-0 right-0 px-3 py-1 text-white flex items-center hover:underline"
+              onClick={togglePassword}
+            >
+              {showPassword ? 'Hide' : 'Show Password'}
+            </button>
           </div>
           <button
             type="submit"
