@@ -89,7 +89,7 @@ model User {
   address  String?  @db.VarChar(60)
   phone    Float?   @db.Double
   email    String  @unique @db.VarChar(50)
-  password String  @db.VarChar(45)
+  password String  
   role     Role?    @default(USER)
   Order    Order[]
   Addresses Address[]

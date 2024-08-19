@@ -19,7 +19,7 @@ export const register = async (auth: User) => {
     throw new Error('Email is already in use');
   }
   const existingUser = await prisma.user.create({
-    data: { email: auth.email, password: auth.password },
+    data: { email: auth.email, password: hashedPassword },
   });
 
   console.log(user);
