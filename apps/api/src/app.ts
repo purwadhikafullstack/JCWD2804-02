@@ -14,6 +14,7 @@ import path from 'path';
 import storeRouter from '../src/routers/storeRouters.ts'
 import locationRouter from '../src/routers/locationRouter.ts'
 import userAddressRouter from '../src/routers/userAddressRouter.ts'
+import shippingAddressRouter from '../src/routers/shippingAddressRouter.ts'
 
 dotenv.config({
   path: path.resolve(process.cwd(), '.env.development')
@@ -31,7 +32,8 @@ app.use(
 app.use(express.json());
 app.use("/api", storeRouter);
 app.use("/api", locationRouter);
-app.use("/api", userAddressRouter)
+app.use("/api", userAddressRouter);
+app.use("/api", shippingAddressRouter);
 
 app.listen(PORT, () => {
   console.log("Listening on port: ", PORT);
