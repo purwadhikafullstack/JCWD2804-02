@@ -1,18 +1,22 @@
-import { Router } from "express";
+import { Router } from 'express';
 import {
-    setShippingAddress,
-    getAddresses,
-    getAddressById,
-    updateAddress,
-    deleteAddress,  
-} from "../controllers/shippingAddressController";
+  createAddressController,
+  getAllAddressesByUserIdController,
+  getAddressByIdController,
+  updateAddressController,
+  deleteAddressController
+} from '../controllers/shippingAddressController.ts';
+import {
+  validateCreateAddress,
+  validateUpdateAddress
+} from '../middlewares/validateAddress.ts';
 
 const router = Router();
 
-router.post("/shipping-address", setShippingAddress);
-router.get("/shipping-addresses", getAddresses);
-router.get("/shipping-addresses/:id", getAddressById);
-router.put("/shipping-addresses/:id", updateAddress);
-router.delete("/shipping-addresses/:id", deleteAddress);
+router.post('/shipping-addresses', validateCreateAddress, createAddressController);
+router.get('/shipping-addresses/user/:userId', getAllAddressesByUserIdController);
+router.get('/shipping-addresses/:id', getAddressByIdController);
+router.put('/shipping-addresses/:id', validateUpdateAddress, updateAddressController);
+router.delete('/shipping-addresses/:id', deleteAddressController);
 
 export default router;

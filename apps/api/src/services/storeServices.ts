@@ -1,9 +1,8 @@
 import { prisma } from "../prisma.ts";
 import { Store } from "../utils/interface.ts";
-import { Prisma } from "@prisma/client";
 
 export const createStore = async (store: Store) => {
-  const storeData: Prisma.StoreCreateInput = {
+  const storeData = {
     store_name: store.store_name,
     description: store.description,
     location: store.location,
@@ -44,7 +43,7 @@ export async function getStoreById(id: number) {
 }
 
 export const updateStore = async (id: number, store: Store) => {
-  const storeData: Prisma.StoreUpdateInput = {
+  const storeData = {
     store_name: store.store_name,
     description: store.description,
     location: store.location,

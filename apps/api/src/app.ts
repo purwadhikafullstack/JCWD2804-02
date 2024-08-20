@@ -1,12 +1,5 @@
 import express, {
-  json,
-  urlencoded,
-  Express,
-  Request,
-  Response,
-  NextFunction,
-  Router,
-  Application,
+  Application
 } from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';

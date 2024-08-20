@@ -1,6 +1,24 @@
 import { prisma } from '../prisma.ts';
 
-export const createAddress = async (userId: number, address: string, isPrimary: boolean) => {
+interface CreateAddressInput {
+  userId: number;
+  address: string;
+  isPrimary: boolean;
+  cityId: string;         // Tambahkan properti cityId
+  cityName: string;       // Tambahkan properti cityName
+  province: string;       // Tambahkan properti province
+  postalCode: string;     // Tambahkan properti postalCode
+}
+
+export const createAddress = async ({
+  userId,
+  address,
+  isPrimary,
+  cityId,
+  cityName,
+  province,
+  postalCode
+}: CreateAddressInput) => {
   if (isPrimary) {
     await prisma.address.updateMany({
       where: { userId },
@@ -13,6 +31,10 @@ export const createAddress = async (userId: number, address: string, isPrimary: 
       address,
       isPrimary,
       userId,
+      cityId,         // Tambahkan cityId
+      cityName,       // Tambahkan cityName
+      province,       // Tambahkan province
+      postalCode,     // Tambahkan postalCode
     },
   });
 };
@@ -29,7 +51,15 @@ export const deleteAddress = async (addressId: number) => {
   });
 };
 
-export const updateAddress = async (addressId: number, address: string, isPrimary: boolean) => {
+export const updateAddress = async (
+  addressId: number,
+  address: string,
+  isPrimary: boolean,
+  cityId?: string,         // Tambahkan cityId jika ingin memperbarui
+  cityName?: string,       // Tambahkan cityName jika ingin memperbarui
+  province?: string,       // Tambahkan province jika ingin memperbarui
+  postalCode?: string      // Tambahkan postalCode jika ingin memperbarui
+) => {
   if (isPrimary) {
     const addressToUpdate = await prisma.address.findUnique({ where: { id: addressId } });
 
@@ -43,7 +73,14 @@ export const updateAddress = async (addressId: number, address: string, isPrimar
 
   return await prisma.address.update({
     where: { id: addressId },
-    data: { address, isPrimary },
+    data: {
+      address,
+      isPrimary,
+      cityId,         // Tambahkan cityId jika diperbarui
+      cityName,       // Tambahkan cityName jika diperbarui
+      province,       // Tambahkan province jika diperbarui
+      postalCode,     // Tambahkan postalCode jika diperbarui
+    },
   });
 };
 
