@@ -49,7 +49,7 @@ const Profile = () => {
               <input
                 type="file"
                 name="profilePicture"
-                className="mt-1 block w-64 p-2 border bg-white text-black border-gray-300 rounded-md"
+                className="mt-1 block w-64 text-sm p-2 border bg-white text-black border-gray-300 rounded-md"
               />
             </div>
 
