@@ -96,11 +96,15 @@ model User {
 }
 
 model Address {
-  id        Int      @id @default(autoincrement())
-  address   String   @db.VarChar(60)
-  isPrimary Boolean  @default(false)
-  userId    Int
-  User      User     @relation(fields: [userId], references: [id])
+  id          Int      @id @default(autoincrement())
+  address     String   @db.VarChar(60)
+  isPrimary   Boolean  @default(false)
+  userId      Int
+  cityId      String      @db.VarChar(45)
+  cityName    String   @db.VarChar(100)
+  province    String   @db.VarChar(100)
+  postalCode  String   @db.VarChar(10)
+  User        User     @relation(fields: [userId], references: [id])
 }
 
 enum Role {

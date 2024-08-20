@@ -1,17 +1,15 @@
-import { PrismaClient } from '@prisma/client';
+import {prisma} from '../prisma.ts';
 
-const prisma = new PrismaClient();
-
-interface Location {
-    storeId: number;
-    latitude: number;
+interface LocationInput {
+    id: number;
     longitude: number;
-}
+    latitude: number;
+  }
 
-const saveLocation = async (location: Location) => {
+const saveLocation = async (location: LocationInput) => {
     // Update lokasi berdasarkan storeId
     const updatedStore = await prisma.store.update({
-        where: { id: location.storeId },
+        where: { id: location.id },
         data: {
             latitude: location.latitude,
             longitude: location.longitude,

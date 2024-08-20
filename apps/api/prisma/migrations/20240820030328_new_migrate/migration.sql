@@ -1,21 +1,13 @@
-/*
-  Warnings:
-
-  - You are about to drop the `samples` table. If the table is not empty, all the data it contains will be lost.
-
-*/
--- DropTable
-DROP TABLE `samples`;
-
 -- CreateTable
 CREATE TABLE `SuperAdmin` (
     `id` INTEGER NOT NULL AUTO_INCREMENT,
     `name` VARCHAR(60) NOT NULL,
-    `email` VARCHAR(50) NOT NULL,
+    `email` VARCHAR(191) NOT NULL,
     `phone` DOUBLE NOT NULL,
     `password` VARCHAR(45) NOT NULL,
     `address` VARCHAR(45) NOT NULL,
 
+    UNIQUE INDEX `SuperAdmin_email_key`(`email`),
     PRIMARY KEY (`id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
@@ -37,13 +29,14 @@ CREATE TABLE `Store` (
 CREATE TABLE `StoreAdmin` (
     `id` INTEGER NOT NULL AUTO_INCREMENT,
     `name` VARCHAR(50) NOT NULL,
-    `email` VARCHAR(50) NOT NULL,
+    `email` VARCHAR(191) NOT NULL,
     `phone` DOUBLE NOT NULL,
     `password` VARCHAR(45) NOT NULL,
     `address` VARCHAR(45) NOT NULL,
     `storeId` INTEGER NOT NULL,
     `superAdminId` INTEGER NOT NULL,
 
+    UNIQUE INDEX `StoreAdmin_email_key`(`email`),
     PRIMARY KEY (`id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
@@ -87,12 +80,23 @@ CREATE TABLE `Payment` (
 -- CreateTable
 CREATE TABLE `User` (
     `id` INTEGER NOT NULL AUTO_INCREMENT,
-    `name` VARCHAR(50) NOT NULL,
-    `address` VARCHAR(60) NOT NULL,
-    `phone` DOUBLE NOT NULL,
+    `name` VARCHAR(50) NULL,
+    `address` VARCHAR(60) NULL,
+    `phone` DOUBLE NULL,
     `email` VARCHAR(50) NOT NULL,
     `password` VARCHAR(45) NOT NULL,
-    `status` VARCHAR(45) NOT NULL,
+    `role` ENUM('SUPERADMIN', 'STOREADMIN', 'USER') NULL DEFAULT 'USER',
+
+    UNIQUE INDEX `User_email_key`(`email`),
+    PRIMARY KEY (`id`)
+) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+
+-- CreateTable
+CREATE TABLE `Address` (
+    `id` INTEGER NOT NULL AUTO_INCREMENT,
+    `address` VARCHAR(60) NOT NULL,
+    `isPrimary` BOOLEAN NOT NULL DEFAULT false,
+    `userId` INTEGER NOT NULL,
 
     PRIMARY KEY (`id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
@@ -123,3 +127,6 @@ ALTER TABLE `Payment` ADD CONSTRAINT `Payment_orderId_fkey` FOREIGN KEY (`orderI
 
 -- AddForeignKey
 ALTER TABLE `Payment` ADD CONSTRAINT `Payment_storeId_fkey` FOREIGN KEY (`storeId`) REFERENCES `Store`(`id`) ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE `Address` ADD CONSTRAINT `Address_userId_fkey` FOREIGN KEY (`userId`) REFERENCES `User`(`id`) ON DELETE RESTRICT ON UPDATE CASCADE;

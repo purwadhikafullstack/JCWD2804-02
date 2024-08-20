@@ -1,3 +1,11 @@
+// Enum untuk menentukan peran pengguna
+export enum Role {
+  SUPERADMIN = 'SUPERADMIN',
+  STOREADMIN = 'STOREADMIN',
+  USER = 'USER'
+}
+
+// Interface untuk SuperAdmin
 export interface SuperAdmin {
   id: number;
   name: string;
@@ -9,6 +17,7 @@ export interface SuperAdmin {
   StoreAdmin: StoreAdmin[]; // Relasi dengan StoreAdmin
 }
 
+// Interface untuk Store
 export interface Store {
   id: number;
   store_name: string;
@@ -25,6 +34,7 @@ export interface Store {
   StoreAdmin: StoreAdmin[]; // Relasi dengan StoreAdmin
 }
 
+// Interface untuk StoreAdmin
 export interface StoreAdmin {
   id: number;
   name: string;
@@ -38,6 +48,7 @@ export interface StoreAdmin {
   SuperAdmin?: SuperAdmin; // Relasi ke SuperAdmin
 }
 
+// Interface untuk Products
 export interface Products {
   id: number;
   name: string;
@@ -49,6 +60,7 @@ export interface Products {
   Order: Order[];   // Relasi dengan Order
 }
 
+// Interface untuk Order
 export interface Order {
   id: number;
   date: Date;
@@ -62,6 +74,7 @@ export interface Order {
   Payment: Payment[];  // Relasi dengan Payment
 }
 
+// Interface untuk Payment
 export interface Payment {
   id: number;
   total_amount: number;
@@ -74,6 +87,7 @@ export interface Payment {
   Store?: Store;    // Relasi ke Store
 }
 
+// Interface untuk User
 export interface User {
   id: number;
   name: string;
@@ -86,16 +100,15 @@ export interface User {
   Addresses: Address[]; // Relasi dengan Address
 }
 
+// Interface untuk Address
 export interface Address {
   id: number;
-  address: string;
   isPrimary: boolean;
   userId: number;  // Foreign key ke User
+  address: string;
+  cityId: string;
+  cityName: string;
+  province: string;
+  postalCode: string;
   User?: User;     // Relasi ke User
-}
-
-export enum Role {
-  SUPERADMIN = 'SUPERADMIN',
-  STOREADMIN = 'STOREADMIN',
-  USER = 'USER'
 }

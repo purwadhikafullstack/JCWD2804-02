@@ -1,19 +1,11 @@
 import express, {
-  json,
-  urlencoded,
-  Express,
-  Request,
-  Response,
-  NextFunction,
-  Router,
-  Application,
+  Application
 } from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
 import path from 'path';
 import storeRouter from '../src/routers/storeRouters.ts';
 import locationRouter from '../src/routers/locationRouter.ts';
-import authRouter from '../src/routers/authRouter.ts';
 import userAddressRouter from '../src/routers/userAddressRouter.ts'
 import shippingAddressRouter from '../src/routers/shippingAddressRouter.ts'
 

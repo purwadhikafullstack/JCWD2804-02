@@ -1,16 +1,19 @@
-import { Request, Response } from "express";
-import * as userAddressService from "../services/userAddressServices.ts";
+import { Request, Response } from 'express';
+import * as userAddressService from '../services/userAddressServices.ts';
 
 export const createAddress = async (req: Request, res: Response) => {
   try {
     const { userId } = req.params;
-    const { address, isPrimary } = req.body;
-
-    const newAddress = await userAddressService.createAddress(
-      Number(userId),
-      address,
-      isPrimary
-    );
+    const { address, isPrimary, cityId, cityName, province, postalCode } = req.body;
+    const bodyRequest: any = {
+        address: address,
+        isPrimary: isPrimary,
+        cityId: cityId,
+        cityName: cityName,
+        province: province,
+        postalCode: postalCode
+      }
+    const newAddress = await userAddressService.createAddress(bodyRequest);
     res.status(201).send(newAddress);
   } catch (error: any) {
     res.status(500).send({
@@ -23,11 +26,13 @@ export const getAddressesByUserId = async (req: Request, res: Response) => {
   try {
     const { userId } = req.params;
     const addresses = await userAddressService.getAddressesByUserId(
-      Number(userId)
+      Number(userId),
     );
 
     if (addresses.length === 0) {
-      return res.status(404).send({ message: "No addresses found for this user." });
+      return res
+        .status(404)
+        .send({ message: 'No addresses found for this user.' });
     }
 
     res.status(200).send(addresses);
@@ -58,7 +63,7 @@ export const updateAddress = async (req: Request, res: Response) => {
     const updatedAddress = await userAddressService.updateAddress(
       Number(id),
       address,
-      isPrimary
+      isPrimary,
     );
     res.status(200).send(updatedAddress);
   } catch (error: any) {
@@ -73,7 +78,7 @@ export const setPrimaryAddress = async (req: Request, res: Response) => {
     const { id } = req.params;
 
     const updatedPrimaryAddress = await userAddressService.setPrimaryAddress(
-      Number(id)
+      Number(id),
     );
     res.status(200).send(updatedPrimaryAddress);
   } catch (error: any) {
