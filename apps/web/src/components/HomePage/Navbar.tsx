@@ -7,7 +7,11 @@ const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   const handleClick = () => {
-    router.push('/home');
+    router.push('/');
+  };
+
+  const onClick = () => {
+    router.push('/profile');
   };
 
   const toggleMenu = () => {
@@ -74,6 +78,7 @@ const Navbar: React.FC = () => {
         </div>
         <div className="relative">
           <img
+            onClick={onClick}
             src="/images/avatar.png"
             alt="User Avatar"
             className="h-8 w-8 rounded-full cursor-pointer"

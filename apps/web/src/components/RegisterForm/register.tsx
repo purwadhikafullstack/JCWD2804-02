@@ -7,6 +7,7 @@ import { FcGoogle } from 'react-icons/fc';
 const RegisterForm = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
 
   const Register = async (e: { preventDefault: () => void }) => {
     e.preventDefault();
@@ -27,8 +28,12 @@ const RegisterForm = () => {
     }
   };
 
+  const togglePassword = () => {
+    setShowPassword(!showPassword);
+  };
+
   return (
-    <div className="flex gap-32 justify-center items-center py-5">
+    <div className="flex gap-32 justify-center items-center py-4">
       <div className="flex justify-center items-center">
         <img
           src="https://cdni.iconscout.com/illustration/free/thumb/free-sign-up-form-4575543-3798675.png"
@@ -65,13 +70,20 @@ const RegisterForm = () => {
               Password
             </label>
             <input
-              type="password"
+              type={showPassword ? 'text' : 'password'}
               name="password"
               id="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               className="mt-1 bg-white text-black block w-full p-2 border rounded-md shadow-sm"
             />
+            <button
+              type="button"
+              className="bg-transparent inset-y-0 right-0 px-3 py-1 text-white flex items-center"
+              onClick={togglePassword}
+            >
+              {showPassword ? 'Hide' : 'Show Password'}
+            </button>
           </div>
           <button
             type="submit"
