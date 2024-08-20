@@ -1,5 +1,6 @@
 'use client';
 import axios from 'axios';
+import Cookies from 'js-cookie';
 import { useState } from 'react';
 import Swal from 'sweetalert2';
 import { FcGoogle } from 'react-icons/fc';
@@ -7,14 +8,32 @@ import { FcGoogle } from 'react-icons/fc';
 const LoginPage = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
 
   const Login = async (e: { preventDefault: () => void }) => {
     e.preventDefault();
     try {
-      await axios.post('http://localhost:8000/api/auth/login', {
-        email: email,
-        password: password,
+      const response = await axios.post(
+        'http://localhost:8000/api/auth/login',
+        {
+          email: email,
+          password: password,
+        },
+      );
+
+      const { token, role } = response.data;
+
+      Cookies.set('auth-token', token, {
+        secure: true,
+        sameSite: 'Strict',
+        expires: 7 / 24,
       });
+      Cookies.set('role', role, {
+        secure: true,
+        sameSite: 'Strict',
+        expires: 7 / 24,
+      });
+
       Swal.fire({
         title: 'Success',
         text: 'Login Success!',
@@ -27,8 +46,12 @@ const LoginPage = () => {
     }
   };
 
+  const togglePassword = () => {
+    setShowPassword(!showPassword);
+  };
+
   return (
-    <div className="flex gap-1 justify-center items-center py-5">
+    <div className="flex gap-1 justify-center items-center py-4">
       <div className="flex justify-center">
         <img
           src="https://img.freepik.com/free-vector/mobile-login-concept-illustration_114360-83.jpg?t=st=1721103873~exp=1721107473~hmac=60fc637d34ea02bb6430031c4438d8525abd928356f958998a55bc43ed4b698a&w=740"
@@ -65,19 +88,26 @@ const LoginPage = () => {
               Password
             </label>
             <input
-              type="password"
+              type={showPassword ? 'text' : 'password'}
               name="password"
               id="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               className="mt-1 bg-white text-black block w-full p-2 border rounded-md shadow-sm"
             />
+            <button
+              type="button"
+              className="bg-transparent inset-y-0 right-0 px-3 py-1 text-white flex items-center"
+              onClick={togglePassword}
+            >
+              {showPassword ? 'Hide' : 'Show Password'}
+            </button>
           </div>
           <button
             type="submit"
             className="w-full px-4 py-2 bg-secondary hover:bg-third text-white rounded-md"
           >
-            LOG IN
+            Log In
           </button>
           <div className="flex items-center justify-between my-4">
             <span className="w-1/5 border-b border-gray-300 lg:w-1/4"></span>
