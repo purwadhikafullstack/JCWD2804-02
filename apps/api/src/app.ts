@@ -15,6 +15,7 @@ import storeRouter from '../src/routers/storeRouters.ts';
 import locationRouter from '../src/routers/locationRouter.ts';
 import authRouter from '../src/routers/authRouter.ts';
 import userAddressRouter from '../src/routers/userAddressRouter.ts'
+import shippingAddressRouter from '../src/routers/shippingAddressRouter.ts'
 
 
 dotenv.config({
@@ -31,11 +32,11 @@ app.use(
 );
 
 app.use(express.json());
+app.use("/api", storeRouter);
+app.use("/api", locationRouter);
+app.use("/api/auth", userAddressRouter);
+app.use("/api", shippingAddressRouter);
 
-app.use('/api', storeRouter);
-app.use('/api', locationRouter);
-app.use('/api/auth', authRouter);
-app.use("/api", userAddressRouter)
 
 
 app.listen(PORT, () => {
