@@ -50,6 +50,10 @@ const LoginPage = () => {
     setShowPassword(!showPassword);
   };
 
+  const handleGoogleLogin = () => {
+    window.location.href = 'http://localhost:8000/api/auth/google';
+  };
+
   return (
     <div className="flex gap-1 justify-center items-center py-4">
       <div className="flex justify-center">
@@ -117,6 +121,7 @@ const LoginPage = () => {
           <div className="flex justify-between">
             <button
               type="button"
+              onClick={handleGoogleLogin}
               className="w-full px-3 flex py-2 ml-2 text-white bg-white rounded hover:bg-slate-200 focus:outline-none"
             >
               <FcGoogle className="text-2xl ml-12" />
