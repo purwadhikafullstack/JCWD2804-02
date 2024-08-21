@@ -5,7 +5,7 @@ import Footer from '@/components/HomePage/Footer';
 
 const page = () => {
   return (
-    <div className="overflow-x-hidden bg-white">
+    <div className="overflow-x-hidden bg-white h-screen">
       <div>
         <Navbar />
         <Profile />
