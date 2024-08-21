@@ -9,6 +9,7 @@ import locationRouter from '../src/routers/locationRouter.ts';
 import authRouter from '../src/routers/authRouter.ts';
 import userAddressRouter from '../src/routers/userAddressRouter.ts';
 import shippingAddressRouter from '../src/routers/shippingAddressRouter.ts';
+import categoryProductRouter from '../src/routers/categoryProductRouter.ts'
 
 dotenv.config({
   path: path.resolve(process.cwd(), '.env.development'),
@@ -29,6 +30,7 @@ app.use('/api', locationRouter);
 app.use('/api/auth', authRouter);
 app.use('/api', shippingAddressRouter);
 app.use('/api', userAddressRouter);
+app.use('/api', categoryProductRouter)
 
 app.listen(PORT, () => {
   console.log('Listening on port: ', PORT);
