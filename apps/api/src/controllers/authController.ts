@@ -1,6 +1,7 @@
 import { Request, Response } from 'express';
 import * as authService from '../services/authService.ts';
 import { generateToken } from '../utils/jwt.ts';
+import passport from 'passport';
 
 export const register = async (req: Request, res: Response) => {
   try {
@@ -43,11 +44,28 @@ export const login = async (req: Request, res: Response) => {
       message: 'User logged in',
       token: token,
       role: user.role,
-
     });
   } catch (error: any) {
     res.status(400).send({
       error: error.message,
     });
   }
+};
+
+export const googleAuth = passport.authenticate('google', {
+  scope: ['profile', 'email'],
+});
+
+export const googleAuthCallback = passport.authenticate('google', {
+  successRedirect: '/',
+  failureRedirect: '/login',
+});
+
+export const logout = (req: Request, res: Response) => {
+  req.logout((err) => {
+    if (err) {
+      return res.status(500).send('Failed to logout');
+    }
+    res.redirect('/');
+  });
 };
