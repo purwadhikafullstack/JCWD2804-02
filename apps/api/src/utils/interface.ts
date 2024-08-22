@@ -1,7 +1,7 @@
 export enum Role {
   SUPERADMIN = 'SUPERADMIN',
   STOREADMIN = 'STOREADMIN',
-  USER = 'USER'
+  USER = 'USER',
 }
 
 export interface SuperAdmin {
@@ -45,7 +45,7 @@ export interface StoreAdmin {
 }
 
 export interface Products {
-  id: number;
+  id?: number;
   name: string;
   category: string;
   price: number;

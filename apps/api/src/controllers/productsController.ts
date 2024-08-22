@@ -1,9 +1,18 @@
 import { Request, Response } from 'express';
 import * as productsService from '../services/productsService.ts';
+import { Products } from '@/utils/interface.ts';
 
 export const createProduct = async (req: Request, res: Response) => {
   try {
-    const products = await productsService.createProduct(req.body);
+    const { name, category, price, stock, storeId } = req.body;
+    const product: Products = {
+      name: name,
+      category: category,
+      price: price,
+      stock: stock,
+      storeId: storeId,
+    };
+    const products = await productsService.createProduct(product);
     res.status(201).send(products);
   } catch (error: any) {
     res.status(400).send({

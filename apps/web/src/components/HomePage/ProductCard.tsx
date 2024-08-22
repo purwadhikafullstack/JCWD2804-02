@@ -5,7 +5,7 @@ interface ProductCardProps {
   name: string;
   price: string;
   unit: string;
-  onAddToCart: () => void;
+  onDetails: () => void;
 }
 
 const ProductCard: React.FC<ProductCardProps> = ({
@@ -13,7 +13,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
   name,
   price,
   unit,
-  onAddToCart,
+  onDetails,
 }) => {
   return (
     <div className="max-w-xs bg-white shadow-lg rounded-lg overflow-hidden">
@@ -25,10 +25,10 @@ const ProductCard: React.FC<ProductCardProps> = ({
           <span className="text-gray-600 font-bold text-xl">Rp {price}</span>
         </div>
         <button
-          onClick={onAddToCart}
+          onClick={onDetails}
           className="mt-4 w-full bg-orange-500 text-white py-2 px-4 rounded hover:bg-orange-600 transition-colors duration-200"
         >
-          Add to Cart
+          Beli
         </button>
       </div>
     </div>
