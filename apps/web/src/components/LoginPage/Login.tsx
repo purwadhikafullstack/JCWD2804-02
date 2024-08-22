@@ -10,7 +10,7 @@ const LoginPage = () => {
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
 
-  const Login = async (e: { preventDefault: () => void }) => {
+  const login = async (e: { preventDefault: () => void }) => {
     e.preventDefault();
     try {
       const response = await axios.post(
@@ -67,7 +67,7 @@ const LoginPage = () => {
         <h2 className="text-3xl text-center text-white font-bold mb-6">
           Log In
         </h2>
-        <form onSubmit={Login} method="POST">
+        <form onSubmit={login} method="POST">
           <div className="mb-4">
             <label
               htmlFor="email"
