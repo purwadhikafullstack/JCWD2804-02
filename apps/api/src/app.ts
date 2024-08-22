@@ -1,4 +1,7 @@
 import express, { Application } from 'express';
+import session from 'express-session';
+import passport from 'passport';
+import { configureGoogleOAuth } from './services/authService.ts';
 import cors from 'cors';
 import dotenv from 'dotenv';
 import path from 'path';
@@ -21,6 +24,18 @@ app.use(
     credentials: true,
   }),
 );
+
+app.use(
+  session({
+    secret: process.env.SESSION_SECRET as string,
+    resave: false,
+    saveUninitialized: true,
+  }),
+);
+
+app.use(passport.initialize());
+app.use(passport.session());
+configureGoogleOAuth();
 
 app.use(express.json());
 app.use('/api', storeRouter);
