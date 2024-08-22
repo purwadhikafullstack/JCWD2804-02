@@ -11,8 +11,8 @@ export interface SuperAdmin {
   phone: number;
   password: string;
   address: string;
-  Store: Store[];          
-  StoreAdmin: StoreAdmin[]; 
+  Store: Store[];
+  StoreAdmin: StoreAdmin[];
 }
 
 export interface Store {
@@ -23,12 +23,12 @@ export interface Store {
   latitude: number;
   longitude: number;
   isMainStore: boolean;
-  superAdminId: number;     
-  SuperAdmin?: SuperAdmin;  
-  Products: Products[];     
-  Order: Order[];           
-  Payment: Payment[];       
-  StoreAdmin: StoreAdmin[]; 
+  superAdminId: number;
+  SuperAdmin?: SuperAdmin;
+  Products: Products[];
+  Order: Order[];
+  Payment: Payment[];
+  StoreAdmin: StoreAdmin[];
 }
 
 export interface StoreAdmin {
@@ -38,10 +38,10 @@ export interface StoreAdmin {
   phone: number;
   password: string;
   address: string;
-  storeId: number;         
-  Store?: Store;          
-  superAdminId: number;    
-  SuperAdmin?: SuperAdmin; 
+  storeId: number;
+  Store?: Store;
+  superAdminId: number;
+  SuperAdmin?: SuperAdmin;
 }
 
 export interface Products {
@@ -50,24 +50,23 @@ export interface Products {
   category: string;
   price: number;
   stock: number;
-  storeId: number;  
-  Store?: Store;    
-  Order: Order[];   
-  categoryId: number; 
-  Category?: Category; 
+  storeId: number;
+  Store?: Store;
+  categoryId: number;
+  Category?: Category;
 }
 
 export interface Order {
   id: number;
   date: Date;
   status: string;
-  storeId: number;     
-  Store?: Store;       
-  userId: number;      
-  User?: User;        
-  productId: number;   
-  Products?: Products; 
-  Payment: Payment[];  
+  storeId: number;
+  Store?: Store;
+  userId: number;
+  User?: User;
+  productId: number;
+  Products?: Products;
+  Payment: Payment[];
 }
 
 export interface Payment {
@@ -76,10 +75,10 @@ export interface Payment {
   method: string;
   date: Date;
   status: string;
-  orderId: number;  
-  Order?: Order;    
-  storeId: number;  
-  Store?: Store;    
+  orderId: number;
+  Order?: Order;
+  storeId: number;
+  Store?: Store;
 }
 
 export interface User {
@@ -89,25 +88,25 @@ export interface User {
   email: string;
   password: string;
   status: string;
-  role: Role;           
-  Order: Order[];       
-  Addresses: Address[]; 
+  role: Role;
+  Order: Order[];
+  Addresses: Address[];
 }
 
 export interface Address {
   id: number;
   isPrimary: boolean;
-  userId: number;  
+  userId: number;
   address: string;
   cityId: string;
   cityName: string;
   province: string;
   postalCode: string;
-  User?: User;     
+  User?: User;
 }
 
 export interface Category {
   id: number;
   name: string;
-  Products: Products[]; 
+  Products: Products[];
 }

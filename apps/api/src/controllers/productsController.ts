@@ -4,13 +4,14 @@ import { Products } from '@/utils/interface.ts';
 
 export const createProduct = async (req: Request, res: Response) => {
   try {
-    const { name, category, price, stock, storeId } = req.body;
+    const { name, category, price, stock, storeId, categoryId } = req.body;
     const product: Products = {
       name: name,
       category: category,
       price: price,
       stock: stock,
       storeId: storeId,
+      categoryId: categoryId,
     };
     const products = await productsService.createProduct(product);
     res.status(201).send(products);

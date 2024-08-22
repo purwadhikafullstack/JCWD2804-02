@@ -10,6 +10,9 @@ export const createProduct = async (products: Products) => {
     Store: {
       connect: { id: products.storeId }, // Menghubungkan ke Store berdasarkan ID
     },
+    Category: {
+      connect: { id: products.categoryId }, // Menghubungkan ke Store berdasarkan ID
+    },
   };
 
   return await prisma.products.create({ data: productsData });
