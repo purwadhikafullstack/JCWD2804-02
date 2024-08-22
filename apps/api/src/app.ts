@@ -6,6 +6,7 @@ import cors from 'cors';
 import dotenv from 'dotenv';
 import path from 'path';
 import storeRouter from '../src/routers/storeRouters.ts';
+import productsRouter from '../src/routers/productsRouters.ts';
 import locationRouter from '../src/routers/locationRouter.ts';
 import authRouter from '../src/routers/authRouter.ts';
 import userAddressRouter from '../src/routers/userAddressRouter.ts';
@@ -38,6 +39,7 @@ configureGoogleOAuth();
 
 app.use(express.json());
 app.use('/api', storeRouter);
+app.use('/api', productsRouter);
 app.use('/api', locationRouter);
 app.use('/api/auth', authRouter);
 app.use('/api', shippingAddressRouter);
