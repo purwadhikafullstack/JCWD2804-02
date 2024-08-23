@@ -66,6 +66,18 @@ const Navbar: React.FC = () => {
           >
             Register
           </a>
+          <a
+            href="/search_product"
+            className="hover:underline text-orange-600 cursor-pointer"
+          >
+            Search Product
+          </a>
+          <a
+            href="/create_product"
+            className="hover:underline text-orange-600 cursor-pointer"
+          >
+            Create Product
+          </a>
         </ul>
       </div>
       <div className="flex items-center space-x-4">
@@ -99,6 +111,18 @@ const Navbar: React.FC = () => {
                 className="text-md font-semibold hover:text-secondary"
               >
                 Register
+              </a>
+              <a
+                href="/search_product"
+                className="text-md font-semibold hover:text-secondary"
+              >
+                Search Product
+              </a>
+              <a
+                href="/create_product"
+                className="text-md font-semibold hover:text-secondary"
+              >
+                Create Product
               </a>
             </nav>
           </div>

@@ -1,6 +1,6 @@
 'use client';
-import Register from '@/components/RegisterForm/register';
-import LogoRegister from '@/components/RegisterForm/logoRegister';
+import Register from '@/components/RegisterPage/register';
+import LogoRegister from '@/components/RegisterPage/logoRegister';
 
 const page = () => {
   return (
