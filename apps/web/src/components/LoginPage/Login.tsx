@@ -10,7 +10,7 @@ const LoginPage = () => {
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
 
-  const Login = async (e: { preventDefault: () => void }) => {
+  const login = async (e: { preventDefault: () => void }) => {
     e.preventDefault();
     try {
       const response = await axios.post(
@@ -50,6 +50,10 @@ const LoginPage = () => {
     setShowPassword(!showPassword);
   };
 
+  const handleGoogleLogin = () => {
+    window.location.href = 'http://localhost:8000/api/auth/google';
+  };
+
   return (
     <div className="flex gap-1 justify-center items-center py-4">
       <div className="flex justify-center">
@@ -63,7 +67,7 @@ const LoginPage = () => {
         <h2 className="text-3xl text-center text-white font-bold mb-6">
           Log In
         </h2>
-        <form onSubmit={Login} method="POST">
+        <form onSubmit={login} method="POST">
           <div className="mb-4">
             <label
               htmlFor="email"
@@ -117,6 +121,7 @@ const LoginPage = () => {
           <div className="flex justify-between">
             <button
               type="button"
+              onClick={handleGoogleLogin}
               className="w-full px-3 flex py-2 ml-2 text-white bg-white rounded hover:bg-slate-200 focus:outline-none"
             >
               <FcGoogle className="text-2xl ml-12" />

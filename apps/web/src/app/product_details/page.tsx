@@ -1,14 +1,14 @@
 import React from 'react';
-import Profile from '@/components/ProfilePage/Profile';
+import ProductDetails from '@/components/ProductDetailsPage/ProductDetails';
 import Navbar from '@/components/HomePage/Navbar';
 import Footer from '@/components/HomePage/Footer';
 
 const page = () => {
   return (
-    <div className="overflow-x-hidden bg-gray-50 h-screen">
+    <div className="overflow-x-hidden h-screen">
       <div>
         <Navbar />
-        <Profile />
+        <ProductDetails />
         <Footer />
       </div>
     </div>

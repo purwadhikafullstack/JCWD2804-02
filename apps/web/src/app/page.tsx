@@ -21,8 +21,8 @@ const page = () => {
     '/images/7.jpg',
   ];
 
-  const handleAddToCart = () => {
-    alert('Product added to cart!');
+  const handleDetails = () => {
+    window.location.href = '/product_details';
   };
 
   const requestPermissions = async () => {
@@ -55,34 +55,48 @@ const page = () => {
         <h2 className="text-2xl ml-8 font-semibold text-gray-700">
           Produk Rekomendasi
         </h2>
-        <div className="p-8 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+        <div className="p-8 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-6">
           <ProductCard
-            imageUrl="https://via.placeholder.com/300"
-            name="Fresh Apples"
-            price="20.000"
-            unit="1kg"
-            onAddToCart={handleAddToCart}
+            imageUrl="/images/bimoli.webp"
+            name="Minyak Bimoli"
+            price="45.000"
+            unit="5 L"
+            onDetails={handleDetails}
+          />
+          <ProductCard
+            imageUrl="/images/bimoli.webp"
+            name="Minyak Bimoli"
+            price="45.000"
+            unit="5 L"
+            onDetails={handleDetails}
+          />
+          <ProductCard
+            imageUrl="/images/bimoli.webp"
+            name="Minyak Bimoli"
+            price="45.000"
+            unit="5 L"
+            onDetails={handleDetails}
           />
           <ProductCard
             imageUrl="https://via.placeholder.com/300"
             name="Organic Bananas"
             price="40.000"
             unit="1kg"
-            onAddToCart={handleAddToCart}
+            onDetails={handleDetails}
           />
           <ProductCard
             imageUrl="https://via.placeholder.com/300"
             name="Red Tomatoes"
             price="20.000"
             unit="500g"
-            onAddToCart={handleAddToCart}
+            onDetails={handleDetails}
           />
           <ProductCard
             imageUrl="https://via.placeholder.com/300"
             name="Red Tomatoes"
             price="20.000"
             unit="500g"
-            onAddToCart={handleAddToCart}
+            onDetails={handleDetails}
           />
         </div>
       </div>
@@ -104,34 +118,48 @@ const page = () => {
         <h2 className="text-2xl ml-8 font-semibold text-gray-700">
           Produk Terbaru
         </h2>
-        <div className="p-8 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+        <div className="p-8 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-6">
           <ProductCard
             imageUrl="https://via.placeholder.com/300"
             name="Fresh Apples"
             price="20.000"
             unit="1kg"
-            onAddToCart={handleAddToCart}
+            onDetails={handleDetails}
+          />
+          <ProductCard
+            imageUrl="https://via.placeholder.com/300"
+            name="Fresh Apples"
+            price="20.000"
+            unit="1kg"
+            onDetails={handleDetails}
+          />
+          <ProductCard
+            imageUrl="https://via.placeholder.com/300"
+            name="Fresh Apples"
+            price="20.000"
+            unit="1kg"
+            onDetails={handleDetails}
           />
           <ProductCard
             imageUrl="https://via.placeholder.com/300"
             name="Organic Bananas"
             price="40.000"
             unit="1kg"
-            onAddToCart={handleAddToCart}
+            onDetails={handleDetails}
           />
           <ProductCard
             imageUrl="https://via.placeholder.com/300"
             name="Red Tomatoes"
             price="20.000"
             unit="500g"
-            onAddToCart={handleAddToCart}
+            onDetails={handleDetails}
           />
           <ProductCard
             imageUrl="https://via.placeholder.com/300"
             name="Red Tomatoes"
             price="20.000"
             unit="500g"
-            onAddToCart={handleAddToCart}
+            onDetails={handleDetails}
           />
         </div>
       </div>
