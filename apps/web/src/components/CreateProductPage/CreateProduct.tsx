@@ -120,8 +120,7 @@ const CreateProduct: React.FC = () => {
               Stock
             </label>
             <input
-              type="number"
-              step="0.01"
+              type="text"
               name="stock"
               id="stock"
               className="mt-1 block w-full p-2 border bg-white text-black border-gray-300 rounded-md"
@@ -138,8 +137,7 @@ const CreateProduct: React.FC = () => {
               Price
             </label>
             <input
-              type="number"
-              step="0.01"
+              type="text"
               name="price"
               id="price"
               className="mt-1 block w-full p-2 border bg-white text-black border-gray-300 rounded-md"

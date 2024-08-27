@@ -1,24 +1,22 @@
-// import { Request, Response, NextFunction } from 'express';
-// import { User, Role } from '@/utils/interface';
+import { RequestHandler } from 'express';
+import { User, Role } from '@/utils/interface';
 
-// export function superAdminOnly(
-//   req: Request,
-//   res: Response,
-//   next: NextFunction,
-// ) {
-//   if (req.user?.role !== 'superadmin') {
-//     return res.status(403).json({ error: 'Access denied' });
-//   }
-//   next();
-// }
+export const superAdminOnly: RequestHandler = (req, res, next) => {
+  const user = req.user as User;
 
-// export function storeAdminOnly(
-//   req: Request,
-//   res: Response,
-//   next: NextFunction,
-// ) {
-//   if (req.user?.role !== 'storeadmin') {
-//     return res.status(403).json({ error: 'Access denied' });
-//   }
-//   next();
-// }
+  if (user?.role !== Role.SUPERADMIN) {
+    return res.status(403).json({ error: 'Access denied' });
+  }
+
+  next();
+};
+
+export const storeAdminOnly: RequestHandler = (req, res, next) => {
+  const user = req.user as User;
+
+  if (user?.role !== Role.STOREADMIN) {
+    return res.status(403).json({ error: 'Access denied' });
+  }
+
+  next();
+};
