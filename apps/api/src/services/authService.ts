@@ -1,4 +1,5 @@
 import passport from 'passport';
+import bcrypt from 'bcryptjs';
 import { prisma } from '../prisma.ts';
 import { Strategy as GoogleStrategy } from 'passport-google-oauth20';
 import { Request, Response, NextFunction } from 'express';
@@ -12,20 +13,29 @@ export interface User {
   Order?: any;
 }
 
+// export const register = async (auth: User) => {
+//   const user = await prisma.user.findUnique({
+//     where: { email: auth.email },
+//   });
+//   if (user?.email) {
+//     throw new Error('Email is already in use');
+//   }
+//   const hashedPassword = await bcrypt.hash(auth.password, 10);
+//   const existingUser = await prisma.user.create({
+//     data: { email: auth.email, password: hashedPassword },
+//   });
+
+//   return existingUser;
+// };
+
 export const register = async (auth: User) => {
-  const user = await prisma.user.findUnique({
-    where: { email: auth.email },
+  const hashedPassword = await bcrypt.hash(auth.password, 10);
+  return await prisma.user.create({
+    data: {
+      email: auth.email,
+      password: hashedPassword,
+    },
   });
-  if (user?.email) {
-    throw new Error('Email is already in use');
-  }
-  const existingUser = await prisma.user.create({
-    data: { email: auth.email, password: auth.password },
-  });
-
-  console.log(user);
-
-  return existingUser;
 };
 
 export const login = async (auth: User) => {

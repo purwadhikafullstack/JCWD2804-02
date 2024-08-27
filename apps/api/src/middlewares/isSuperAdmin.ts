@@ -20,4 +20,3 @@ export const storeAdminOnly: RequestHandler = (req, res, next) => {
 
   next();
 };
-
