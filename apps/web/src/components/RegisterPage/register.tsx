@@ -18,10 +18,17 @@ const RegisterForm = () => {
       });
       Swal.fire({
         title: 'Success',
-        text: 'Account registered!',
+        text: 'Check Your Email to Verify!',
         icon: 'success',
       }).then(() => {
-        window.location.href = '/login';
+        axios
+          .post('http://localhost:8000/api/email/send-email', {
+            to: email,
+            context: email,
+          })
+          .then(() => {
+            window.location.href = '/login';
+          });
       });
     } catch (error: any) {
       console.error(error);
