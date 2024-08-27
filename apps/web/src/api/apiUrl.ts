@@ -11,9 +11,9 @@ export const login = (body: any) => {
 };
 
 export const getAllProducts = () => {
-  return axios.get(`${API_URL}/event`);
+  return axios.get(`${API_URL}/product`);
 };
 
 export const getProductById = (id: number) => {
-  return axios.get(`${API_URL}/event/${id}`);
+  return axios.get(`${API_URL}/product/${id}`);
 };
