@@ -33,7 +33,7 @@ const SearchPage: React.FC = () => {
   });
 
   return (
-    <div className="bg-white min-h-screen pt-5">
+    <div className="bg-gray-50 min-h-screen pt-5">
       <div>
         <h1 className="text-5xl text-center text-primary font-bold">
           Search Product

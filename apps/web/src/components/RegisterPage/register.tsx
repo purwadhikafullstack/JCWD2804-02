@@ -33,7 +33,7 @@ const RegisterForm = () => {
   };
 
   return (
-    <div className="flex gap-32 justify-center items-center py-4">
+    <div className="flex gap-32 bg-gray-50 justify-center items-center py-4">
       <div className="flex justify-center items-center">
         <img
           src="https://cdni.iconscout.com/illustration/free/thumb/free-sign-up-form-4575543-3798675.png"
