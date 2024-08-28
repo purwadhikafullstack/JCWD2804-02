@@ -39,7 +39,14 @@ const LoginPage = () => {
         text: 'Login Success!',
         icon: 'success',
       }).then(() => {
-        window.location.href = '/';
+        const role = Cookies.get('role');
+        if (role === 'USER') {
+          window.location.href = '/';
+        } else if (role === 'SUPERADMIN') {
+          window.location.href = '/';
+        } else if (role === 'STOREADMIN') {
+          window.location.href = '/';
+        }
       });
     } catch (error: any) {
       console.error(error);
