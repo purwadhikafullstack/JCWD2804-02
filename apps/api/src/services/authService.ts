@@ -13,21 +13,6 @@ export interface User {
   Order?: any;
 }
 
-// export const register = async (auth: User) => {
-//   const user = await prisma.user.findUnique({
-//     where: { email: auth.email },
-//   });
-//   if (user?.email) {
-//     throw new Error('Email is already in use');
-//   }
-//   const hashedPassword = await bcrypt.hash(auth.password, 10);
-//   const existingUser = await prisma.user.create({
-//     data: { email: auth.email, password: hashedPassword },
-//   });
-
-//   return existingUser;
-// };
-
 export const register = async (auth: User) => {
   const hashedPassword = await bcrypt.hash(auth.password, 10);
   return await prisma.user.create({
