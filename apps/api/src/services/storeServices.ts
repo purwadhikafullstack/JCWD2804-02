@@ -9,9 +9,6 @@ export const createStore = async (store: Store) => {
     latitude: store.latitude,
     longitude: store.longitude,
     isMainStore: store.isMainStore,
-    SuperAdmin: {
-      connect: { id: store.superAdminId }  // Menghubungkan ke SuperAdmin berdasarkan ID
-    }
   };
 
   return await prisma.store.create({ data: storeData });
@@ -20,7 +17,6 @@ export const createStore = async (store: Store) => {
 export const getAllStore = async () => {
   return await prisma.store.findMany({
     include: {
-      SuperAdmin: true,
       Products: true,
       Order: true,
       Payment: true,
@@ -33,7 +29,6 @@ export async function getStoreById(id: number) {
   return await prisma.store.findUnique({
     where: { id },
     include: {
-      SuperAdmin: true,
       Products: true,
       Order: true,
       Payment: true,
@@ -50,9 +45,6 @@ export const updateStore = async (id: number, store: Store) => {
     latitude: store.latitude,
     longitude: store.longitude,
     isMainStore: store.isMainStore,
-    SuperAdmin: {
-      connect: { id: store.superAdminId }  // Menghubungkan ke SuperAdmin berdasarkan ID
-    }
   };
 
   return await prisma.store.update({ where: { id }, data: storeData });

@@ -11,8 +11,6 @@ export interface SuperAdmin {
   phone: number;
   password: string;
   address: string;
-  Store: Store[];
-  StoreAdmin: StoreAdmin[];
 }
 
 export interface Store {
@@ -23,8 +21,6 @@ export interface Store {
   latitude: number;
   longitude: number;
   isMainStore: boolean;
-  superAdminId: number;
-  SuperAdmin?: SuperAdmin;
   Products: Products[];
   Order: Order[];
   Payment: Payment[];
@@ -40,8 +36,6 @@ export interface StoreAdmin {
   address: string;
   storeId: number;
   Store?: Store;
-  superAdminId: number;
-  SuperAdmin?: SuperAdmin;
 }
 
 export interface Products {
