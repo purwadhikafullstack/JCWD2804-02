@@ -43,7 +43,7 @@ const LoginPage = () => {
         if (role === 'USER') {
           window.location.href = '/';
         } else if (role === 'SUPERADMIN') {
-          window.location.href = '/';
+          window.location.href = '/dashboard_admin';
         } else if (role === 'STOREADMIN') {
           window.location.href = '/';
         }
