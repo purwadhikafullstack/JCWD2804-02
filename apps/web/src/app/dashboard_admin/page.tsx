@@ -1,4 +1,4 @@
-import Layout from '@/components/AdminDashboardPage/AdminDashboard';
+import Layout from '@/components/AdminDashboardPage/index';
 import Footer from '@/components/HomePage/Footer';
 import Navbar from '@/components/HomePage/Navbar';
 

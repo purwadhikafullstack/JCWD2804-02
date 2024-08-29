@@ -1,4 +1,4 @@
-import CreateProduct from '@/components/CreateProductPage/CreateProduct';
+import CreateProduct from '@/components/CreateProductPage/index';
 import Footer from '@/components/HomePage/Footer';
 import Navbar from '@/components/HomePage/Navbar';
 import React from 'react';

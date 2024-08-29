@@ -1,5 +1,5 @@
 import React from 'react';
-import ProductDetails from '@/components/ProductDetailsPage/ProductDetails';
+import ProductDetails from '@/components/ProductDetailsPage/index';
 import Navbar from '@/components/HomePage/Navbar';
 import Footer from '@/components/HomePage/Footer';
 
