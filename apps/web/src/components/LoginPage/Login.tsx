@@ -39,7 +39,14 @@ const LoginPage = () => {
         text: 'Login Success!',
         icon: 'success',
       }).then(() => {
-        window.location.href = '/';
+        const role = Cookies.get('role');
+        if (role === 'USER') {
+          window.location.href = '/';
+        } else if (role === 'SUPERADMIN') {
+          window.location.href = '/';
+        } else if (role === 'STOREADMIN') {
+          window.location.href = '/';
+        }
       });
     } catch (error: any) {
       console.error(error);
@@ -55,7 +62,7 @@ const LoginPage = () => {
   };
 
   return (
-    <div className="flex gap-1 justify-center items-center py-4">
+    <div className="flex bg-gray-50 gap-1 justify-center items-center py-4">
       <div className="flex justify-center">
         <img
           src="https://img.freepik.com/free-vector/mobile-login-concept-illustration_114360-83.jpg?t=st=1721103873~exp=1721107473~hmac=60fc637d34ea02bb6430031c4438d8525abd928356f958998a55bc43ed4b698a&w=740"

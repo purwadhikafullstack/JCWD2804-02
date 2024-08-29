@@ -1,4 +1,5 @@
 'use client';
+import Footer from '@/components/HomePage/Footer';
 import Login from '@/components/LoginPage/Login';
 import LogoLogin from '@/components/LoginPage/logoLogin';
 
@@ -10,6 +11,9 @@ const Page = () => {
       </div>
       <div>
         <Login />
+      </div>
+      <div>
+        <Footer />
       </div>
     </div>
   );
