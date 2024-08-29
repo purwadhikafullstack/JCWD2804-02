@@ -44,10 +44,10 @@ CREATE TABLE `StoreAdmin` (
 CREATE TABLE `Products` (
     `id` INTEGER NOT NULL AUTO_INCREMENT,
     `name` VARCHAR(50) NOT NULL,
-    `category` VARCHAR(45) NOT NULL,
     `price` DECIMAL(12, 2) NOT NULL,
     `stock` INTEGER NOT NULL,
     `storeId` INTEGER NOT NULL,
+    `categoryId` INTEGER NOT NULL,
 
     PRIMARY KEY (`id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
@@ -84,7 +84,7 @@ CREATE TABLE `User` (
     `address` VARCHAR(60) NULL,
     `phone` DOUBLE NULL,
     `email` VARCHAR(50) NOT NULL,
-    `password` VARCHAR(45) NOT NULL,
+    `password` VARCHAR(255) NOT NULL,
     `role` ENUM('SUPERADMIN', 'STOREADMIN', 'USER') NULL DEFAULT 'USER',
 
     UNIQUE INDEX `User_email_key`(`email`),
@@ -97,7 +97,20 @@ CREATE TABLE `Address` (
     `address` VARCHAR(60) NOT NULL,
     `isPrimary` BOOLEAN NOT NULL DEFAULT false,
     `userId` INTEGER NOT NULL,
+    `cityId` VARCHAR(45) NOT NULL,
+    `cityName` VARCHAR(100) NOT NULL,
+    `province` VARCHAR(100) NOT NULL,
+    `postalCode` VARCHAR(10) NOT NULL,
 
+    PRIMARY KEY (`id`)
+) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+
+-- CreateTable
+CREATE TABLE `Category` (
+    `id` INTEGER NOT NULL AUTO_INCREMENT,
+    `name` VARCHAR(45) NOT NULL,
+
+    UNIQUE INDEX `Category_name_key`(`name`),
     PRIMARY KEY (`id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
@@ -112,6 +125,9 @@ ALTER TABLE `StoreAdmin` ADD CONSTRAINT `StoreAdmin_superAdminId_fkey` FOREIGN K
 
 -- AddForeignKey
 ALTER TABLE `Products` ADD CONSTRAINT `Products_storeId_fkey` FOREIGN KEY (`storeId`) REFERENCES `Store`(`id`) ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE `Products` ADD CONSTRAINT `Products_categoryId_fkey` FOREIGN KEY (`categoryId`) REFERENCES `Category`(`id`) ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE `Order` ADD CONSTRAINT `Order_storeId_fkey` FOREIGN KEY (`storeId`) REFERENCES `Store`(`id`) ON DELETE RESTRICT ON UPDATE CASCADE;

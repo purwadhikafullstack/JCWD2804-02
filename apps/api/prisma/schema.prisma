@@ -26,7 +26,7 @@ model Store {
   latitude    Float
   longitude   Float
   isMainStore Boolean   @default(false)
-  SuperAdmin  SuperAdmin   @relation(fields: [superAdminId], references: [id])
+  SuperAdmin  SuperAdmin?   @relation(fields: [superAdminId], references: [id])
   superAdminId Int
   Products    Products[]
   Order       Order[]
