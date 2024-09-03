@@ -141,10 +141,10 @@ const CreateStore: React.FC = () => {
             {latitude && longitude && (
               <div className="mt-4">
                 <p>
-                  <strong>Latitude:</strong> {latitude}
+                  <strong>Latitude:</strong> {storeData.latitude}
                 </p>
                 <p>
-                  <strong>Longitude:</strong> {longitude}
+                  <strong>Longitude:</strong> {storeData.longitude}
                 </p>
               </div>
             )}
