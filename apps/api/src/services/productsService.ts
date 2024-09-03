@@ -6,13 +6,7 @@ export const createProduct = async (products: Products) => {
     name: products.name,
     category: products.category,
     price: products.price,
-    stock: products.stock,
-    Store: {
-      connect: { id: products.storeId }, // Menghubungkan ke Store berdasarkan ID
-    },
-    Category: {
-      connect: { id: products.categoryId }, // Menghubungkan ke Store berdasarkan ID
-    },
+    stock: products.stock
   };
 
   return await prisma.products.create({ data: productsData });
@@ -43,9 +37,6 @@ export const updateProduct = async (id: number, products: Products) => {
     category: products.category,
     price: products.price,
     stock: products.stock,
-    Store: {
-      connect: { id: products.storeId }, // Menghubungkan ke Store berdasarkan ID
-    },
   };
 
   return await prisma.products.update({ where: { id }, data: productsData });
@@ -54,17 +45,3 @@ export const updateProduct = async (id: number, products: Products) => {
 export const deleteProduct = async (id: number) => {
   return await prisma.products.delete({ where: { id } });
 };
-
-// export const assignStoreAdminToStore = async (
-//   storeAdminId: number,
-//   storeId: number,
-// ) => {
-//   return await prisma.storeAdmin.update({
-//     where: { id: storeAdminId },
-//     data: {
-//       Store: {
-//         connect: { id: storeId },
-//       },
-//     },
-//   });
-// };

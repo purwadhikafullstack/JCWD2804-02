@@ -46,10 +46,8 @@ model Products {
   name       String     @db.VarChar(50)
   price      Decimal    @db.Decimal(12, 2)
   stock      Int
-  Store      Store      @relation(fields: [storeId], references: [id])
-  storeId    Int
-  categoryId Int
-  Category   Category   @relation(fields: [categoryId], references: [id])
+  Store      Store[]
+  Category   Category[]
   Order      Order[]
 }
 
