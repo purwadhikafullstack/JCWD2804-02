@@ -2,6 +2,9 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import Swal from 'sweetalert2';
+import { MapContainer, TileLayer, Marker, useMapEvents } from 'react-leaflet';
+import 'leaflet/dist/leaflet.css';
+import L from 'leaflet';
 
 const CreateStore: React.FC = () => {
   const [storeData, setStoreData] = useState({
@@ -17,33 +20,6 @@ const CreateStore: React.FC = () => {
   const [longitude, setLongitude] = useState<number | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
-
-  const handleGetLocation = () => {
-    if (!navigator.geolocation) {
-      setError('Geolocation is not supported by your browser.');
-      return;
-    }
-
-    setLoading(true);
-    setError(null);
-
-    navigator.geolocation.getCurrentPosition(
-      (position) => {
-        setLatitude(position.coords.latitude);
-        setLongitude(position.coords.longitude);
-        setLoading(false);
-        setStoreData((prevData) => ({
-          ...prevData,
-          latitude: position.coords.latitude.toString(),
-          longitude: position.coords.longitude.toString(),
-        }));
-      },
-      (err) => {
-        setError('Unable to retrieve your location.');
-        setLoading(false);
-      },
-    );
-  };
 
   const handleChange = (
     e: React.ChangeEvent<
@@ -86,6 +62,24 @@ const CreateStore: React.FC = () => {
     }
   };
 
+  const LocationMarker = () => {
+    const map = useMapEvents({
+      click(e) {
+        setLatitude(e.latlng.lat);
+        setLongitude(e.latlng.lng);
+        setStoreData((prevData) => ({
+          ...prevData,
+          latitude: e.latlng.lat.toString(),
+          longitude: e.latlng.lng.toString(),
+        }));
+      },
+    });
+
+    return latitude && longitude ? (
+      <Marker position={[latitude, longitude]} />
+    ) : null;
+  };
+
   return (
     <div className="min-h-screen bg-gray-100 p-2">
       <div className="container mx-auto bg-white p-6 rounded-lg shadow-lg">
@@ -93,7 +87,6 @@ const CreateStore: React.FC = () => {
           Create a Store
         </h1>
         <form onSubmit={handleSubmit} className="space-y-6">
-          {/* Form fields */}
           <div>
             <label
               htmlFor="store_name"
@@ -129,25 +122,29 @@ const CreateStore: React.FC = () => {
           </div>
           <div className="max-w-md mx-auto mt-10 p-6 bg-white rounded-lg shadow-md">
             <h2 className="text-2xl font-bold mb-4 text-center">
-              Location Fetcher
+              Location Selector
             </h2>
-            <button
-              type="button"
-              onClick={handleGetLocation}
-              className="w-full py-2 px-4 bg-blue-500 text-white rounded hover:bg-blue-600 transition duration-300"
+            <MapContainer
+              center={[51.505, -0.09]}
+              zoom={13}
+              style={{ height: '400px', width: '100%' }}
             >
-              {loading ? 'Fetching location...' : 'Get My Location'}
-            </button>
+              <TileLayer
+                url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+              />
+              <LocationMarker />
+            </MapContainer>
 
             {error && <p className="mt-4 text-red-500">{error}</p>}
 
             {latitude && longitude && (
               <div className="mt-4">
                 <p>
-                  <strong>Latitude:</strong> {latitude}
+                  <strong>Latitude:</strong> {storeData.latitude}
                 </p>
                 <p>
-                  <strong>Longitude:</strong> {longitude}
+                  <strong>Longitude:</strong> {storeData.longitude}
                 </p>
               </div>
             )}
@@ -163,7 +160,7 @@ const CreateStore: React.FC = () => {
               name="isMainStore"
               id="isMainStore"
               className="mt-1 block w-full p-2 border bg-white text-black border-gray-300 rounded-md"
-              value={storeData.isMainStore ? "yes" : "no"}
+              value={storeData.isMainStore ? 'yes' : 'no'}
               onChange={handleChange}
               required
             >
