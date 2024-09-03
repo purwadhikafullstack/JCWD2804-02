@@ -1,4 +1,4 @@
-import { Request, Response } from 'express';
+import { Request, Response, NextFunction } from 'express';
 import * as authService from '../services/authService.ts';
 import { generateToken } from '../utils/jwt.ts';
 import passport from 'passport';
@@ -56,10 +56,22 @@ export const googleAuth = passport.authenticate('google', {
   scope: ['profile', 'email'],
 });
 
-export const googleAuthCallback = passport.authenticate('google', {
-  successRedirect: '/',
-  failureRedirect: '/login',
-});
+export const googleAuthCallback = (
+  req: Request,
+  res: Response,
+  next: NextFunction,
+) => {
+  passport.authenticate('google', (err: any, user: any, info: any) => {
+    if (err) {
+      return res.status(500).send({ error: 'Authentication error' });
+    }
+    if (!user) {
+      return res.status(401).send({ error: 'No user returned' });
+    }
+    const token = generateToken(user.id);
+    res.redirect(`http://localhost:3000/success?token=${token}`);
+  })(req, res, next);
+};
 
 export const logout = (req: Request, res: Response) => {
   req.logout((err) => {

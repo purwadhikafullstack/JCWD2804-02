@@ -46,6 +46,7 @@ export const configureGoogleOAuth = () => {
         done: Function,
       ) => {
         // Lakukan sesuatu dengan profile Google user di sini (misal: mencari atau membuat user di database)
+        console.log('profile : ', profile);
         return done(null, profile);
       },
     ),
