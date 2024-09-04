@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { getAllProducts } from '@/api/apiUrl';
 
-interface Event {
+interface Product {
   id: number;
   name: string;
   category: string;
@@ -12,7 +12,7 @@ interface Event {
 }
 
 const SearchPage: React.FC = () => {
-  const [products, setProducts] = useState<Event[]>([]);
+  const [products, setProducts] = useState<Product[]>([]);
 
   useEffect(() => {
     fetchProducts();
@@ -80,19 +80,23 @@ const SearchPage: React.FC = () => {
               {products.map((product) => (
                 <div
                   key={product.id}
-                  className="cursor-pointer w-full sm:w-72 p-5 shadow-2xl bg-secondary flex flex-col items-center text-primary text-center rounded-lg"
+                  className="cursor-pointer w-full sm:w-72 p-5 shadow-md bg-secondary flex flex-col items-center text-primary text-center rounded-lg"
                 >
                   <img
                     src={product.image}
                     alt="product"
-                    className="rounded-[20%] w-3/5 h-28 lg:w-11/12 sm:w-4/5"
+                    className="rounded-[20%] w-3/5 h-44 lg:w-[80%] sm:w-4/5"
                   />
-                  <h3 className="mt-4 mb-2 text-lg font-bold">
+                  <h3 className="mt-4 mb-2 text-white text-lg font-bold">
                     {product.name}
                   </h3>
-                  <p className="mt-2 mb-2 text-sm">{product.category}</p>
-                  <p className="mt-2 mb-2 text-sm">{product.stock}</p>
-                  <p className="mt-2 mb-2 text-sm">
+                  <p className="mt-2 mb-2 text-white text-sm">
+                    {product.category}
+                  </p>
+                  <p className="mt-2 mb-2 text-white text-sm">
+                    Stok: {product.stock}
+                  </p>
+                  <p className="mt-2 mb-2 text-white text-sm">
                     {formatter.format(product.price)}
                   </p>
                   <a

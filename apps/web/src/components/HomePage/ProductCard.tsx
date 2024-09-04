@@ -1,36 +1,64 @@
-import React from 'react';
+import { getAllProducts } from '@/api/apiUrl';
+import React, { useEffect, useState } from 'react';
 
-interface ProductCardProps {
-  imageUrl: string;
+interface Product {
+  id: number;
   name: string;
-  price: string;
-  unit: string;
-  onDetails: () => void;
+  category: string;
+  price: number;
+  stock: string;
+  image: string;
 }
 
-const ProductCard: React.FC<ProductCardProps> = ({
-  imageUrl,
-  name,
-  price,
-  unit,
-  onDetails,
-}) => {
+const ProductCard: React.FC = () => {
+  const [products, setProducts] = useState<Product[]>([]);
+
+  useEffect(() => {
+    fetchProducts();
+  }, []);
+
+  const fetchProducts = async () => {
+    try {
+      const response = await getAllProducts();
+      setProducts(response.data);
+    } catch (error) {
+      console.error('Error fetching products:', error);
+    }
+  };
+
+  let formatter = new Intl.NumberFormat('en-US', {
+    style: 'currency',
+    currency: 'IDR',
+  });
+
   return (
-    <div className="max-w-xs bg-white shadow-lg rounded-lg overflow-hidden">
-      <img className="w-full h-48 object-cover" src={imageUrl} alt={name} />
-      <div className="p-4">
-        <h3 className="text-gray-600 font-semibold text-lg">{name}</h3>
-        <p className="text-gray-600 text-sm">{unit}</p>
-        <div className="mt-2">
-          <span className="text-gray-600 font-bold text-xl">Rp {price}</span>
-        </div>
-        <button
-          onClick={onDetails}
-          className="mt-4 w-full bg-orange-500 text-white py-2 px-4 rounded hover:bg-orange-600 transition-colors duration-200"
+    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
+      {products.map((product) => (
+        <div
+          key={product.id}
+          className="cursor-pointer w-full p-5 shadow-md bg-secondary flex flex-col items-center text-primary text-center rounded-lg"
         >
-          Beli
-        </button>
-      </div>
+          <img
+            src={product.image}
+            alt={product.name}
+            className="rounded-lg w-3/5 h-44 object-cover"
+          />
+          <h3 className="mt-4 mb-2 text-white text-lg font-bold">
+            {product.name}
+          </h3>
+          <p className="text-white text-sm">{product.category}</p>
+          <p className="text-white text-sm">Stok: {product.stock}</p>
+          <p className="text-white text-sm">
+            {formatter.format(product.price)}
+          </p>
+          <a
+            href={`/product_details/${product.id}`}
+            className="mt-4 mb-2 bg-primary text-white rounded-md p-2 hover:bg-third"
+          >
+            Beli!
+          </a>
+        </div>
+      ))}
     </div>
   );
 };
