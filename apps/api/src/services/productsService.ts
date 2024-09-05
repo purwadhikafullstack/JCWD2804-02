@@ -6,7 +6,8 @@ export const createProduct = async (products: Products) => {
     name: products.name,
     category: products.category,
     price: products.price,
-    stock: products.stock
+    stock: products.stock,
+    image: products.image,
   };
 
   return await prisma.products.create({ data: productsData });
@@ -37,6 +38,7 @@ export const updateProduct = async (id: number, products: Products) => {
     category: products.category,
     price: products.price,
     stock: products.stock,
+    image: products.image,
   };
 
   return await prisma.products.update({ where: { id }, data: productsData });

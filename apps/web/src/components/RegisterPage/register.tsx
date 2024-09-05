@@ -35,6 +35,10 @@ const RegisterForm = () => {
     }
   };
 
+  const loginWithOAuth = () => {
+    window.location.href = 'http://localhost:8000/api/auth/google';
+  };
+
   const togglePassword = () => {
     setShowPassword(!showPassword);
   };
@@ -107,6 +111,7 @@ const RegisterForm = () => {
             <button
               type="button"
               className="w-full px-3 flex py-2 ml-2 text-white bg-white rounded hover:bg-slate-200 focus:outline-none"
+              onClick={() => loginWithOAuth()}
             >
               <FcGoogle className="text-2xl ml-12" />
               <span className="text-md font-medium ml-3 text-black">

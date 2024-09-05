@@ -4,12 +4,14 @@ import { Products } from '@/utils/interface.ts';
 
 export const createProduct = async (req: Request, res: Response) => {
   try {
-    const { name, category, price, stock, storeId, categoryId } = req.body;
+    const { name, category, price, stock, image, storeId, categoryId } =
+      req.body;
     const product: Products = {
       name: name,
       category: category,
       price: price,
       stock: stock,
+      image: image,
       storeId: storeId,
       categoryId: categoryId,
     };
@@ -72,32 +74,3 @@ export const deleteProduct = async (req: Request, res: Response) => {
     });
   }
 };
-
-// export const assignStoreAdmin = async (
-//   req: Request,
-//   res: Response,
-// ): Promise<void> => {
-//   const { storeAdminId, storeId } = req.body;
-
-//   // Validasi input
-//   if (typeof storeAdminId !== 'number' || typeof storeId !== 'number') {
-//     res.status(400).json({ message: 'Invalid input' });
-//     return;
-//   }
-
-//   try {
-//     const updatedStoreAdmin = await productsService.assignStoreAdminToStore(
-//       storeAdminId,
-//       storeId,
-//     );
-//     res.status(200).json({
-//       message: 'Store Admin assigned to Store successfully',
-//       data: updatedStoreAdmin,
-//     });
-//   } catch (error: any) {
-//     res.status(500).json({
-//       message: 'Failed to assign Store Admin to Store',
-//       error: error.message,
-//     });
-//   }
-// };
