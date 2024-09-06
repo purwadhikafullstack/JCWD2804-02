@@ -80,28 +80,24 @@ const SearchPage: React.FC = () => {
               {products.map((product) => (
                 <div
                   key={product.id}
-                  className="cursor-pointer w-full sm:w-72 p-5 shadow-md bg-secondary flex flex-col items-center text-primary text-center rounded-lg"
+                  className="cursor-pointer w-full sm:w-72 p-5 shadow-md bg-gray-50 flex flex-col items-center text-primary text-center rounded-lg"
                 >
                   <img
                     src={product.image}
                     alt="product"
                     className="rounded-[20%] w-3/5 h-44 lg:w-[80%] sm:w-4/5"
                   />
-                  <h3 className="mt-4 mb-2 text-white text-lg font-bold">
+                  <h3 className="mt-4 mb-2 text-lg font-bold">
                     {product.name}
                   </h3>
-                  <p className="mt-2 mb-2 text-white text-sm">
-                    {product.category}
-                  </p>
-                  <p className="mt-2 mb-2 text-white text-sm">
-                    Stok: {product.stock}
-                  </p>
-                  <p className="mt-2 mb-2 text-white text-sm">
+                  <p className="mt-2 mb-2 text-sm">{product.category}</p>
+                  <p className="mt-2 mb-2 text-sm">Stok: {product.stock}</p>
+                  <p className="mt-2 mb-2 text-sm">
                     {formatter.format(product.price)}
                   </p>
                   <a
                     href={`/product_details/${product.id}`}
-                    className="mt-2 mb-2 bg-primary text-white rounded-md p-2 hover:bg-secondary"
+                    className="mt-2 mb-2 bg-primary text-white rounded-md w-full p-2 hover:bg-third"
                   >
                     Beli!
                   </a>
@@ -116,57 +112,32 @@ const SearchPage: React.FC = () => {
               </h2>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                 {/* Recommended Product Cards */}
-                <div className="bg-secondary rounded-lg shadow-md p-6">
-                  <img
-                    src="/images/bimoli.webp"
-                    alt="Recommended Product"
-                    className="w-full h-32 sm:h-48 object-cover rounded-t-lg"
-                  />
-                  <div className="mt-4">
-                    <h3 className="text-lg font-semibold text-white">
-                      Minyak Bimoli
+                {products.map((product) => (
+                  <div
+                    key={product.id}
+                    className="cursor-pointer w-full sm:w-72 p-5 shadow-md bg-gray-50 flex flex-col items-center text-primary text-center rounded-lg"
+                  >
+                    <img
+                      src={product.image}
+                      alt="product"
+                      className="rounded-[20%] w-3/5 h-44 lg:w-[80%] sm:w-4/5"
+                    />
+                    <h3 className="mt-4 mb-2 text-lg font-bold">
+                      {product.name}
                     </h3>
-                    <p className="text-gray-200">5 L</p>
-                    <p className="text-gray-200">Rp. 45.000</p>
-                    <button className="mt-4 w-full bg-primary hover:bg-third text-white py-2 rounded-lg">
-                      Beli
-                    </button>
+                    <p className="mt-2 mb-2 text-sm">{product.category}</p>
+                    <p className="mt-2 mb-2 text-sm">Stok: {product.stock}</p>
+                    <p className="mt-2 mb-2 text-sm">
+                      {formatter.format(product.price)}
+                    </p>
+                    <a
+                      href={`/product_details/${product.id}`}
+                      className="mt-2 mb-2 bg-primary text-white rounded-md w-full p-2 hover:bg-third"
+                    >
+                      Beli!
+                    </a>
                   </div>
-                </div>
-                <div className="bg-secondary rounded-lg shadow-md p-6">
-                  <img
-                    src="/images/bimoli.webp"
-                    alt="Recommended Product"
-                    className="w-full h-32 sm:h-48 object-cover rounded-t-lg"
-                  />
-                  <div className="mt-4">
-                    <h3 className="text-lg font-semibold text-white">
-                      Minyak Bimoli
-                    </h3>
-                    <p className="text-gray-200">5 L</p>
-                    <p className="text-gray-200">Rp. 45.000</p>
-                    <button className="mt-4 w-full bg-primary hover:bg-third text-white py-2 rounded-lg">
-                      Beli
-                    </button>
-                  </div>
-                </div>
-                <div className="bg-secondary rounded-lg shadow-md p-6">
-                  <img
-                    src="/images/bimoli.webp"
-                    alt="Recommended Product"
-                    className="w-full h-32 sm:h-48 object-cover rounded-t-lg"
-                  />
-                  <div className="mt-4">
-                    <h3 className="text-lg font-semibold text-white">
-                      Minyak Bimoli
-                    </h3>
-                    <p className="text-gray-200">5 L</p>
-                    <p className="text-gray-200">Rp. 45.000</p>
-                    <button className="mt-4 w-full bg-primary hover:bg-third text-white py-2 rounded-lg">
-                      Beli
-                    </button>
-                  </div>
-                </div>
+                ))}
               </div>
             </div>
           </div>

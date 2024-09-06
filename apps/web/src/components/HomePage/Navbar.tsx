@@ -78,7 +78,7 @@ const Navbar = ({ showSearch = true }) => {
   };
 
   return (
-    <div className="sticky top-0 p-3 w-full bg-white z-50 shadow-md">
+    <div className="sticky top-0 p-3 w-full bg-white text-white z-50 shadow-md">
       <div className="max-w-7xl mx-auto flex justify-between items-center">
         {/* Logo */}
         <div

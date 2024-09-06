@@ -36,24 +36,20 @@ const ProductCard: React.FC = () => {
       {products.map((product) => (
         <div
           key={product.id}
-          className="cursor-pointer w-full p-5 shadow-md bg-secondary flex flex-col items-center text-primary text-center rounded-lg"
+          className="cursor-pointer w-full p-5 shadow-md bg-gray-50 flex flex-col items-center text-primary text-center rounded-lg"
         >
           <img
             src={product.image}
             alt={product.name}
             className="rounded-lg w-3/5 h-44 object-cover"
           />
-          <h3 className="mt-4 mb-2 text-white text-lg font-bold">
-            {product.name}
-          </h3>
-          <p className="text-white text-sm">{product.category}</p>
-          <p className="text-white text-sm">Stok: {product.stock}</p>
-          <p className="text-white text-sm">
-            {formatter.format(product.price)}
-          </p>
+          <h3 className="mt-4 mb-2 text-lg font-bold">{product.name}</h3>
+          <p className="text-sm mb-2">{product.category}</p>
+          <p className="text-sm mb-2">Stok: {product.stock}</p>
+          <p className="text-sm mb-2">{formatter.format(product.price)}</p>
           <a
             href={`/product_details/${product.id}`}
-            className="mt-4 mb-2 bg-primary text-white rounded-md p-2 hover:bg-third"
+            className="mt-4 mb-2 w-full bg-primary text-white rounded-md p-2 hover:bg-third"
           >
             Beli!
           </a>
