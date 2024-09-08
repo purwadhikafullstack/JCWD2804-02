@@ -70,7 +70,7 @@ const LoginPage = () => {
           className="rounded-md h-auto w-1/2"
         />
       </div>
-      <div className="max-w-md p-6 mr-48 bg-primary border border-gray-300 rounded-md shadow-md">
+      <div className="max-w-md p-6 mr-48 bg-secondary border border-gray-300 rounded-md shadow-md">
         <h2 className="text-3xl text-center text-white font-bold mb-6">
           Log In
         </h2>
@@ -116,7 +116,7 @@ const LoginPage = () => {
           </div>
           <button
             type="submit"
-            className="w-full px-4 py-2 bg-secondary hover:bg-third text-white rounded-md"
+            className="w-full px-4 py-2 bg-primary hover:bg-third text-white rounded-md"
           >
             Log In
           </button>
