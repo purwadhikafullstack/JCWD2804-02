@@ -36,7 +36,7 @@ const CreateStore: React.FC = () => {
     try {
       const { store_name, description, location, latitude, longitude, isMainStore } = storeData;
 
-      await axios.post('http://localhost:8000/api/store', {
+      await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/api/store`, {
         store_name,
         description,
         location,
