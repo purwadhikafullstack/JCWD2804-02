@@ -1,4 +1,4 @@
-import { getAllProducts } from '@/api/apiUrl';
+import { getAllProducts } from '../../api/apiUrl';
 import React, { useEffect, useState } from 'react';
 
 interface Product {

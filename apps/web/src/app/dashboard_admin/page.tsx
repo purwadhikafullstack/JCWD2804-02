@@ -1,6 +1,6 @@
-import Layout from '@/components/AdminDashboardPage/index';
-import Footer from '@/components/HomePage/Footer';
-import Navbar from '@/components/HomePage/Navbar';
+import Layout from '../../components/AdminDashboardPage';
+import Footer from "../../components/HomePage/Footer";
+import Navbar from "../../components/HomePage/Navbar";
 
 const Dashboard: React.FC = () => {
   return (
