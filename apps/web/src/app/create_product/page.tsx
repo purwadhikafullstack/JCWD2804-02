@@ -1,6 +1,6 @@
-import CreateProduct from "../../components/CreateProductPage";
-import Footer from "../../components/HomePage/Footer";
-import Navbar from "../../components/HomePage/Navbar";
+import CreateProduct from '@/components/CreateProductPage/index';
+import Footer from '@/components/HomePage/Footer';
+import Navbar from '@/components/HomePage/Navbar';
 
 const page = () => {
   return (

@@ -1,6 +1,6 @@
-import ProductDetails from '../../../components/ProductDetailsPage'
-import Navbar from '../../../components/HomePage/Navbar';
-import Footer from '../../../components/HomePage/Footer';
+import ProductDetails from '@/components/ProductDetailsPage/index';
+import Navbar from '@/components/HomePage/Navbar';
+import Footer from '@/components/HomePage/Footer';
 
 const page = () => {
   return (

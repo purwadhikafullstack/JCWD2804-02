@@ -1,6 +1,6 @@
-import Navbar from '../../components/HomePage/Navbar';
-import Footer from '../../components/HomePage/Footer';
-import SearchPage from '../../components/SearchProductPage';
+import Navbar from '@/components/HomePage/Navbar';
+import Footer from '@/components/HomePage/Footer';
+import SearchPage from '@/components/SearchProductPage/index';
 
 const page = () => {
   return (

@@ -1,6 +1,6 @@
 'use client';
 import React, { useState, useEffect } from 'react';
-import { getAllProducts } from '../../api/apiUrl';
+import { getAllProducts } from '@/api/apiUrl';
 
 interface Product {
   id: number;
