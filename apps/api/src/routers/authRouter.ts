@@ -5,8 +5,8 @@ import {
   googleAuth,
   googleAuthCallback,
   logout,
-} from '../controllers/authController.ts';
-import { isAuthenticated } from '../services/authService.ts';
+} from '@/controllers/authController.ts';
+import { isAuthenticated } from '@/services/authService.ts';
 
 const router = Router();
 

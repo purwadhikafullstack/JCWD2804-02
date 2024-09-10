@@ -1,5 +1,5 @@
-import { prisma } from '../prisma.ts';
-import { Products } from '../utils/interface.ts';
+import { prisma } from '@/prisma.ts';
+import { Products } from '@/utils/interface.ts';
 
 export const createProduct = async (products: Products) => {
   const productsData = {

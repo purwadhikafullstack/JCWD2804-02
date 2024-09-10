@@ -4,8 +4,8 @@ import {
   getAddressesByUserId,
   deleteAddress,
   updateAddress,
-  setPrimaryAddress
-} from '../controllers/userAddressController.ts';
+  setPrimaryAddress,
+} from '@/controllers/userAddressController.ts';
 
 const router = Router();
 

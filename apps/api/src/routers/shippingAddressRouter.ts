@@ -4,19 +4,30 @@ import {
   getAllAddressesByUserIdController,
   getAddressByIdController,
   updateAddressController,
-  deleteAddressController
-} from '../controllers/shippingAddressController.ts';
+  deleteAddressController,
+} from '@/controllers/shippingAddressController.ts';
 import {
   validateCreateAddress,
-  validateUpdateAddress
-} from '../middlewares/validateAddress.ts';
+  validateUpdateAddress,
+} from '@/middlewares/validateAddress.ts';
 
 const router = Router();
 
-router.post('/shipping-addresses', validateCreateAddress, createAddressController);
-router.get('/shipping-addresses/user/:userId', getAllAddressesByUserIdController);
+router.post(
+  '/shipping-addresses',
+  validateCreateAddress,
+  createAddressController,
+);
+router.get(
+  '/shipping-addresses/user/:userId',
+  getAllAddressesByUserIdController,
+);
 router.get('/shipping-addresses/:id', getAddressByIdController);
-router.put('/shipping-addresses/:id', validateUpdateAddress, updateAddressController);
+router.put(
+  '/shipping-addresses/:id',
+  validateUpdateAddress,
+  updateAddressController,
+);
 router.delete('/shipping-addresses/:id', deleteAddressController);
 
 export default router;

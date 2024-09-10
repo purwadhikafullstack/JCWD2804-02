@@ -5,7 +5,7 @@ import {
   getAllProducts,
   getProductById,
   deleteProduct,
-} from '../controllers/productsController.ts';
+} from '@/controllers/productsController.ts';
 
 const router = Router();
 

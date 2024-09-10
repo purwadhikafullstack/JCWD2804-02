@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import * as productsService from '../services/productsService.ts';
+import * as productsService from '@/services/productsService.ts';
 import { Products } from '@/utils/interface.ts';
 
 export const createProduct = async (req: Request, res: Response) => {

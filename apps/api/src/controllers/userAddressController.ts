@@ -1,18 +1,19 @@
 import { Request, Response } from 'express';
-import * as userAddressService from '../services/userAddressServices.ts';
+import * as userAddressService from '@/services/userAddressServices.ts';
 
 export const createAddress = async (req: Request, res: Response) => {
   try {
     const { userId } = req.params;
-    const { address, isPrimary, cityId, cityName, province, postalCode } = req.body;
+    const { address, isPrimary, cityId, cityName, province, postalCode } =
+      req.body;
     const bodyRequest: any = {
-        address: address,
-        isPrimary: isPrimary,
-        cityId: cityId,
-        cityName: cityName,
-        province: province,
-        postalCode: postalCode
-      }
+      address: address,
+      isPrimary: isPrimary,
+      cityId: cityId,
+      cityName: cityName,
+      province: province,
+      postalCode: postalCode,
+    };
     const newAddress = await userAddressService.createAddress(bodyRequest);
     res.status(201).send(newAddress);
   } catch (error: any) {

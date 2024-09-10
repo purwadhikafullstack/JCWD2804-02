@@ -1,5 +1,5 @@
-import { prisma } from "../prisma.ts";
-import { Category } from "../utils/interface.ts";
+import { prisma } from '@/prisma.ts';
+import { Category } from '@/utils/interface.ts';
 
 export const createCategory = async (category: Category) => {
   const existingCategory = await prisma.category.findUnique({

@@ -1,14 +1,14 @@
 import axios from 'axios';
-import { prisma } from '../prisma.ts';
+import { prisma } from '@/prisma.ts';
 import { Address } from '@/utils/interface.ts';
 
-const RAJAONGKIR_API_KEY = process.env.RAJAONGKIR_API_KEY; 
+const RAJAONGKIR_API_KEY = process.env.RAJAONGKIR_API_KEY;
 const RAJAONGKIR_URL = 'https://api.rajaongkir.com/starter/city';
 
 const getCityFromRajaOngkir = async (cityId: string) => {
   const response = await axios.get(RAJAONGKIR_URL, {
     params: { id: cityId },
-    headers: { key: RAJAONGKIR_API_KEY }
+    headers: { key: RAJAONGKIR_API_KEY },
   });
 
   if (response.data.rajaongkir.status.code !== 200) {
@@ -18,7 +18,12 @@ const getCityFromRajaOngkir = async (cityId: string) => {
   return response.data.rajaongkir.results;
 };
 
-export const createAddress = async ( userId: number, address: string, cityId: string, isPrimary: boolean ) => {
+export const createAddress = async (
+  userId: number,
+  address: string,
+  cityId: string,
+  isPrimary: boolean,
+) => {
   // Ambil data kota dari RajaOngkir
   const cityData = await getCityFromRajaOngkir(cityId);
 
@@ -60,7 +65,12 @@ export const getAddressById = async (id: number) => {
 };
 
 // Fungsi untuk memperbarui alamat berdasarkan id
-export const updateAddress = async (id: number, address: string, cityId: string, isPrimary: boolean) => {
+export const updateAddress = async (
+  id: number,
+  address: string,
+  cityId: string,
+  isPrimary: boolean,
+) => {
   // Ambil data kota dari RajaOngkir
   const cityData = await getCityFromRajaOngkir(cityId);
 

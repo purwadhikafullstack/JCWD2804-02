@@ -1,13 +1,13 @@
-import { prisma } from '../prisma.ts';
+import { prisma } from '@/prisma.ts';
 
 interface CreateAddressInput {
   userId: number;
   address: string;
   isPrimary: boolean;
-  cityId: string;         // Tambahkan properti cityId
-  cityName: string;       // Tambahkan properti cityName
-  province: string;       // Tambahkan properti province
-  postalCode: string;     // Tambahkan properti postalCode
+  cityId: string; // Tambahkan properti cityId
+  cityName: string; // Tambahkan properti cityName
+  province: string; // Tambahkan properti province
+  postalCode: string; // Tambahkan properti postalCode
 }
 
 export const createAddress = async ({
@@ -17,7 +17,7 @@ export const createAddress = async ({
   cityId,
   cityName,
   province,
-  postalCode
+  postalCode,
 }: CreateAddressInput) => {
   if (isPrimary) {
     await prisma.address.updateMany({
@@ -31,10 +31,10 @@ export const createAddress = async ({
       address,
       isPrimary,
       userId,
-      cityId,         // Tambahkan cityId
-      cityName,       // Tambahkan cityName
-      province,       // Tambahkan province
-      postalCode,     // Tambahkan postalCode
+      cityId, // Tambahkan cityId
+      cityName, // Tambahkan cityName
+      province, // Tambahkan province
+      postalCode, // Tambahkan postalCode
     },
   });
 };
@@ -55,13 +55,15 @@ export const updateAddress = async (
   addressId: number,
   address: string,
   isPrimary: boolean,
-  cityId?: string,         // Tambahkan cityId jika ingin memperbarui
-  cityName?: string,       // Tambahkan cityName jika ingin memperbarui
-  province?: string,       // Tambahkan province jika ingin memperbarui
-  postalCode?: string      // Tambahkan postalCode jika ingin memperbarui
+  cityId?: string, // Tambahkan cityId jika ingin memperbarui
+  cityName?: string, // Tambahkan cityName jika ingin memperbarui
+  province?: string, // Tambahkan province jika ingin memperbarui
+  postalCode?: string, // Tambahkan postalCode jika ingin memperbarui
 ) => {
   if (isPrimary) {
-    const addressToUpdate = await prisma.address.findUnique({ where: { id: addressId } });
+    const addressToUpdate = await prisma.address.findUnique({
+      where: { id: addressId },
+    });
 
     if (addressToUpdate) {
       await prisma.address.updateMany({
@@ -76,16 +78,18 @@ export const updateAddress = async (
     data: {
       address,
       isPrimary,
-      cityId,         // Tambahkan cityId jika diperbarui
-      cityName,       // Tambahkan cityName jika diperbarui
-      province,       // Tambahkan province jika diperbarui
-      postalCode,     // Tambahkan postalCode jika diperbarui
+      cityId, // Tambahkan cityId jika diperbarui
+      cityName, // Tambahkan cityName jika diperbarui
+      province, // Tambahkan province jika diperbarui
+      postalCode, // Tambahkan postalCode jika diperbarui
     },
   });
 };
 
 export const setPrimaryAddress = async (addressId: number) => {
-  const addressToSetPrimary = await prisma.address.findUnique({ where: { id: addressId } });
+  const addressToSetPrimary = await prisma.address.findUnique({
+    where: { id: addressId },
+  });
 
   if (!addressToSetPrimary) {
     throw new Error('Address not found.');
