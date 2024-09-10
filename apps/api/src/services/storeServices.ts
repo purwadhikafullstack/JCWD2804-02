@@ -1,5 +1,5 @@
-import { prisma } from "../prisma.ts";
-import { Store } from "../utils/interface.ts";
+import { prisma } from '@/prisma.ts';
+import { Store } from '@/utils/interface.ts';
 
 export const createStore = async (store: Store) => {
   const storeData = {
@@ -20,8 +20,8 @@ export const getAllStore = async () => {
       Products: true,
       Order: true,
       Payment: true,
-      StoreAdmin: true
-    }
+      StoreAdmin: true,
+    },
   });
 };
 
@@ -32,8 +32,8 @@ export async function getStoreById(id: number) {
       Products: true,
       Order: true,
       Payment: true,
-      StoreAdmin: true
-    }
+      StoreAdmin: true,
+    },
   });
 }
 
@@ -54,13 +54,16 @@ export const deleteStore = async (id: number) => {
   return await prisma.store.delete({ where: { id } });
 };
 
-export const assignStoreAdminToStore = async (storeAdminId: number, storeId: number) => {
+export const assignStoreAdminToStore = async (
+  storeAdminId: number,
+  storeId: number,
+) => {
   return await prisma.storeAdmin.update({
     where: { id: storeAdminId },
     data: {
       Store: {
-        connect: { id: storeId }
-      }
-    }
+        connect: { id: storeId },
+      },
+    },
   });
 };

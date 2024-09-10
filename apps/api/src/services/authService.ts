@@ -1,6 +1,6 @@
 import passport from 'passport';
 import bcrypt from 'bcryptjs';
-import { prisma } from '../prisma.ts';
+import { prisma } from '@/prisma.ts';
 import { Strategy as GoogleStrategy } from 'passport-google-oauth20';
 import { Request, Response, NextFunction } from 'express';
 

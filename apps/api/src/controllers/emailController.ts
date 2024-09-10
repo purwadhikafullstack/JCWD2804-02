@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { Email, sendEmail } from '../services/emailService.ts';
+import { Email, sendEmail } from '@/services/emailService.ts';
 import dotenv from 'dotenv';
 dotenv.config;
 
