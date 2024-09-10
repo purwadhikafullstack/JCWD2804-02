@@ -1,7 +1,7 @@
 'use client';
-import Footer from '@/components/HomePage/Footer';
-import Login from '@/components/LoginPage/Login';
-import LogoLogin from '@/components/LoginPage/logoLogin';
+import Footer from "../../components/HomePage/Footer";
+import Login from '../../components/LoginPage/Login';
+import LogoLogin from '../../components/LoginPage/logoLogin';
 
 const Page = () => {
   return (

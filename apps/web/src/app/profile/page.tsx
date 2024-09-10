@@ -1,7 +1,6 @@
-import React from 'react';
-import Profile from '@/components/ProfilePage/index';
-import Navbar from '@/components/HomePage/Navbar';
-import Footer from '@/components/HomePage/Footer';
+import Profile from '../../components/ProfilePage'
+import Navbar from '../../components/HomePage/Navbar';
+import Footer from '../../components/HomePage/Footer';
 
 const page = () => {
   return (
