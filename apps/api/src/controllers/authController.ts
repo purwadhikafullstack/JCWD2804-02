@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from 'express';
 import * as authService from '@/services/authService.ts';
-import { generateToken } from '../utils/jwt.ts';
+import { generateToken } from '@/utils/jwt.ts';
 import passport from 'passport';
 
 export const register = async (req: Request, res: Response) => {

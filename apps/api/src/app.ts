@@ -5,14 +5,14 @@ import { configureGoogleOAuth } from './services/authService.ts';
 import cors from 'cors';
 import dotenv from 'dotenv';
 import path from 'path';
-import storeRouter from '../src/routers/storeRouters.ts';
-import productsRouter from '../src/routers/productsRouters.ts';
-import locationRouter from '../src/routers/locationRouter.ts';
-import authRouter from '../src/routers/authRouter.ts';
-import userAddressRouter from '../src/routers/userAddressRouter.ts';
-import shippingAddressRouter from '../src/routers/shippingAddressRouter.ts';
-// import categoryProductRouter from '../src/routers/categoryProductRouter.ts';
-import emailRouter from '../src/routers/emailRouter.ts';
+import storeRouter from '@/routers/storeRouters.ts';
+import productsRouter from '@/routers/productsRouters.ts';
+import locationRouter from '@/routers/locationRouter.ts';
+import authRouter from '@/routers/authRouter.ts';
+import userAddressRouter from '@/routers/userAddressRouter.ts';
+import shippingAddressRouter from '@/routers/shippingAddressRouter.ts';
+// import categoryProductRouter from '@/routers/categoryProductRouter.ts';
+import emailRouter from '@/routers/emailRouter.ts';
 
 dotenv.config({
   path: path.resolve(process.cwd(), '.env.development'),
