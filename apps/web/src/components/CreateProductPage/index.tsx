@@ -27,7 +27,7 @@ const CreateProduct: React.FC = () => {
       const { name, category, price, stock, image } = productData;
       const productPrice = parseFloat(price);
 
-      await axios.post('http://localhost:8000/api/product', {
+      await axios.post('`${process.env.NEXT_PUBLIC_API_URL}/api/product', {
         name,
         category,
         price: productPrice,
