@@ -1,7 +1,19 @@
 'use client';
-import React, { useState } from 'react';
+import { useParams } from 'next/navigation';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 
-const page: React.FC = () => {
+export interface Products {
+  id?: number;
+  name: string;
+  category: string;
+  image: string;
+  price: number;
+}
+
+const EventDetailsPage = () => {
+  const { id } = useParams() as { id: string };
+  const [product, setProduct] = useState<Products | null>(null);
   const [quantity, setQuantity] = useState<number>(1);
 
   const handleIncrement = () => {
@@ -16,20 +28,39 @@ const page: React.FC = () => {
     alert('Product added to cart!');
   };
 
+  useEffect(() => {
+    const fetchProductDetails = async () => {
+      try {
+        if (id) {
+          const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/api/product/${id}`);
+          setProduct(response.data);
+        }
+      } catch (error) {
+        console.error("Error fetching product details:", error);
+      }
+    };
+
+    fetchProductDetails();
+  }, [id]);
+
+  if (!product) {
+    return <div>Loading...</div>;
+  }
+
   return (
     <div className="flex justify-center items-center min-h-screen bg-gray-50">
       <div className="bg-white p-8 rounded-lg shadow-md max-w-3xl flex">
         <div className="flex-shrink-0">
           <img
-            src="/images/bimoli.webp"
-            alt="Product Image"
+            src={product.image}
+            alt={product.name}
             className="w-64 h-64 object-cover rounded-lg"
           />
         </div>
         <div className="ml-8">
-          <h2 className="text-3xl font-bold text-gray-900">Bimoli Minyak 5L</h2>
+          <h2 className="text-3xl font-bold text-gray-900">{product.name}</h2>
           <p className="text-xl font-semibold text-gray-700 mt-2">
-            Rp45.000,00
+            Rp{product.price.toLocaleString('id-ID')},00
           </p>
           <p className="mt-4 text-gray-600">
             Deskripsi Produk
@@ -73,4 +104,4 @@ const page: React.FC = () => {
   );
 };
 
-export default page;
+export default EventDetailsPage;
