@@ -32,11 +32,13 @@ const EventDetailsPage = () => {
     const fetchProductDetails = async () => {
       try {
         if (id) {
-          const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/api/product/${id}`);
+          const response = await axios.get(
+            `${process.env.NEXT_PUBLIC_API_URL}/api/product/${id}`,
+          );
           setProduct(response.data);
         }
       } catch (error) {
-        console.error("Error fetching product details:", error);
+        console.error('Error fetching product details:', error);
       }
     };
 

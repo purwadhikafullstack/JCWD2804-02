@@ -21,10 +21,6 @@ const page = () => {
     '/images/7.jpg',
   ];
 
-  const handleDetails = () => {
-    window.location.href = '/product_details';
-  };
-
   const requestPermissions = async () => {
     try {
       const location = await requestLocation();
